@@ -1,0 +1,206 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  background-color: #f0f2f5;
+  overflow: hidden;
+}
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.divEsquerda{
+  flex: 1;
+  display: flex; 
+  flex-direction: column; 
+  height: 100%;
+}
+
+.divEsquerda img{
+  width: 100%;
+}
+
+.divDireita{
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.divDireita img{
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  margin-bottom: 110px;
+}
+
+
+#email{
+  margin-bottom: 30px;
+}
+
+.form input{
+  width: 100%;
+  border: 1px solid black;
+  font-size: 18px;
+  background-color: #D9D9D9;
+  padding: 10px 40px 10px 12px;
+  border-radius: 3px;
+  box-sizing:border-box;
+}
+
+.form #senha{
+  padding: 10px 12px 10px 12px;
+}
+
+.form{
+  position: relative; 
+  width: 50%;
+}
+
+img.img1{
+  position: absolute;
+  top: 100%;
+  right: 15px;
+  width: 20px;
+  transform: translateY(-520%);
+  
+}
+
+span a{
+  color: blue;
+}
+
+button.botaoLogin{
+  border: 2px solid black;
+  font-size: 20px;
+  margin-top: 30px;
+  padding: 8px 80px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+.botaoLogin a{
+text-decoration: none;
+  color: black;
+}
+
+.botaoAssociar a{
+  text-decoration: none;
+  color: white;
+}
+
+
+.span{
+  font-size: 20px;
+}
+
+button.botaoAssociar{
+  border: 2px solid black;
+  font-size: 20px;
+  margin-top: 40px;
+  padding: 10px 80px;
+  border-radius: 20px;
+  background-color: #124588;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 30px 0;
+  width: 80%;
+}
+.divider hr {
+  flex: 1;
+  border: none;
+  border-top: 1px solid black;
+}
+.divider span {
+  padding: 0 10px;
+}
+
+
+/* Responsividade para celular */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .divEsquerda {
+    display: none; /* Esconder a imagem no celular */
+  }
+
+  .divDireita {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .form {
+    width: 100%;
+  }
+
+  img.img1{
+    margin-top: 5px;
+  }
+  .form input {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  button.botaoLogin, button.botaoAssociar {
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  .span {
+    font-size: 18px;
+  }
+}
+
+/* Responsividade para tablets */
+@media (min-width: 768px) and (max-width: 1080px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .divEsquerda {
+    display: none; /* Esconder a imagem no tablet */
+  }
+
+  .divDireita {
+    width: 90%;
+    padding: 40px;
+  }
+
+  .form {
+    width: 80%;
+  }
+
+  img.img1{
+    top: 80%;
+    transform: translateY(-400%);
+  }
+
+  .form input {
+    font-size: 17px;
+    padding: 12px;
+  }
+
+  button.botaoLogin, button.botaoAssociar {
+    padding: 12px;
+    font-size: 19px;
+  }
+
+  .span {
+    font-size: 19px;
+  }
+}
