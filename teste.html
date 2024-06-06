@@ -1,137 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entre ou cadastre-se</title>
-    <style>
-            
-    body {
-        font-family: "Roboto", sans-serif;
-        margin: 0;
-    }
-
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .divEsquerda {
-        flex: 1;
-    }
-
-    .divEsquerda img {
-        width: 100%;
-        height: auto;
-    }
-
-    .form {
-        flex: 1;
-        padding: 50px;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .form img {
-        width: 100%;
-        max-width: 400px;
-        display: flex;
-    }
-
-    .input-container {
-        position: relative;
-        margin-bottom: 20px;
-        width: 100%;
-    }
-
-    .input-container input {
-        width: 100%;
-        padding: 10px;
-        padding-right: 40px; /* Espaço para o ícone */
-        border-radius: 3px;
-        border: 1px solid black;
-    }
-
-    .input-container img.input-icon {
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-    }
-
-    .form #email {
-        margin-top: 100px;
-    }
-
-    .divider {
-        display: flex;
-        align-items: center;
-        text-align: center;
-        margin: 20px 0;
-        width: 100%;
-    }
-
-    .divider hr {
-        flex: 1;
-        border: none;
-        border-top: 1px solid black;
-    }
-
-    .divider span {
-        padding: 0 10px;
-    }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redefinição de Senha</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+  p {
+    margin-bottom: 10px;
+  }
+  input[type=email] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0085FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="divEsquerda">
-            <img src="/Login/imagens/coracao-de-papel-colocado-nas-maos-do-casal-na-mesa-de-marmore 1.png" alt="Coração com as mãos">
-        </div>
-        
-        <section class="form">
-            <img src="/Login/imagens/logo fortes 1.png" alt="Logo Fortes">
-            
-            <div>
-                <div class="input-container">
-                    <input type="email" name="email" required placeholder="Entre com seu email" id="email">
-                    <img src="/Login/Icons/image 1.png" alt="Person" class="input-icon">
-                </div>
-                
-                <div class="input-container">
-                    <input type="password" name="senha" required placeholder="Senha" id="senha">
-                    <img src="/Login/Icons/eye.png" alt="Mostrar senha" class="input-icon" id="togglePassword">
-                </div>
-            </div>
-            <span><a href="">Esqueceu sua senha?</a></span>
-            <button type="button" class="botaoLogin">
-                <a href="">Iniciar Sessão</a>
-            </button>
-            <div class="divider">
-                <hr><span>OU</span><hr>
-            </div>
-            <button type="button" class="botaoAssociar">
-                <a href="">Associar-me</a>
-            </button>
-        </section>
-    </div>
-
-    <script>
-        const togglePassword = document.querySelector('#togglePassword');
-        const password = document.querySelector('#senha');
-
-        togglePassword.addEventListener('click', function (e) {
-            // Toggle the type attribute
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-
-            // Toggle the eye icon
-            this.src = type === 'password' ? '/Login/Icons/eye.png' : '/Login/Icons/eye-off.png';
-        });
-    </script>
+<div class="container">
+  <h1>REDEFINIÇÃO DE SENHA</h1>
+  <p>Informe seu e-mail de login para enviarmos o link de recuperação de senha</p>
+  <form action="mailto:gustavo.fiorotti8@hotmail.com" method="post">
+    <label for="email">E-MAIL</label>
+    <input type="email" id="email" name="email" placeholder="usuario@gmail.com" required>
+    <button type="submit">Enviar link de recuperação</button>
+  </form>
+</div>
 </body>
 </html>

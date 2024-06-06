@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Entre ou cadastre-se</title>
-    <link rel="stylesheet" href="./páginas/login.css" />
+    <link rel="stylesheet" href="./CSS/login.css" />
+    <link rel="shortcut icon" href="/Login/Icons/favicon.png" type="image/x-icon">
   </head>
   <body>
     <div class="container">
@@ -34,10 +35,10 @@
             placeholder="Senha"
             id="senha">
             
-            <span><a href="">Esqueceu sua senha?</a><span>
+            <span><a href="/Login/redefinirSenha.html">Esqueceu sua senha?</a><span>
         </div>
-        <button type="button" class="botaoLogin">
-          <a href="">Iniciar Sessão</a>
+        <button onclick="acessarLogin()" type="button" class="botaoLogin">
+          Iniciar Sessão
         </button>
         <div class="divider">
           <hr />
@@ -46,11 +47,16 @@
         </div>
 
         <span class="span">É uma entidade carente e deseja se associar?</span>
-        <button type="button" class="botaoAssociar">
-          <a href="">Associar-me</a>
-
+        <button onclick="acessarCadastro()" type="button" class="botaoAssociar">
+          Associar-me
         </button>
       </section>
     </div>
+
+    <script>
+      function acessarCadastro(){
+        window.location.href = "/Login/Cadastrar/cadastrar.html"
+      }
+    </script>
   </body>
 </html>
