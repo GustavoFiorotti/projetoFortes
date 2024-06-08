@@ -5,11 +5,13 @@ body {
   font-family: "Roboto", Helvetica, sans-serif;
   margin: 0;
   background-color: #f0f2f5;
+  overflow: hidden;
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
+  height: 100vh; /* Ajusta a altura da tela */
 }
 
 .divEsquerda {
@@ -36,6 +38,7 @@ body {
   max-width: 400px;
   display: flex;
   margin-bottom: 110px;
+  cursor: pointer;
 }
 
 #email {
@@ -79,12 +82,18 @@ img.img1 {
   transform: translateY(-520%);
 }
 
-span a {
-  color: #0085ff;
-}
-
 .span {
   font-size: 20px;
+}
+span a {
+  font-size: 14px;
+  color: #0085ff;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+span a:hover{
+  text-decoration: underline;
 }
 
 button.botaoLogin {
@@ -121,14 +130,15 @@ button.botaoAssociar {
 }
 
 button.botaoAssociar:hover {
+  background-color: #073763;
+  color: white;
+}
+
+button.botaoAssociar:active,
+button.botaoAssociar.active {
   background-color: #95bcf2;
   font-weight: bold;
   color: black;
-}
-
-button.botaoAssociar:active {
-  background-color: #073763;
-  color: white;
 }
 
 .divider {
@@ -222,5 +232,28 @@ button.botaoAssociar:active {
 
   .span {
     font-size: 19px;
+  }
+}
+
+/* Responsividade para telas pequenas em altura */
+@media (max-height: 690px) {
+  body{
+    overflow-y: auto;
+  }
+  .divDireita {
+    padding: 20px;
+  }
+
+  .divDireita img {
+    margin-bottom: 50px;
+  }
+
+  .form input {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .span {
+    font-size: 18px;
   }
 }

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+    <link
+      rel="shortcut icon"
+      href="/Login/Icons/favicon.png"
+      type="image/x-icon"
+    />
+    <style>
+      @charset "UTF-8";
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+      body {
+        font-family: "Roboto", Helvetica, sans-serif;
+        background-color: #f0f2f5;
+        padding-top: 50px;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+
+      .voltar {
+        display: flex;
+        box-sizing: border-box;
+      }
+
+      .voltar button {
+        border: none;
+        font-size: 16px;
+        padding: 0 0 0 5px;
+        cursor: pointer;
+        background-color: white;
+      }
+
+      .voltar button:hover {
+        font-weight: bold;
+      }
+
+      .voltar button:active {
+        font-weight: bold;
+      }
+
+      .voltar img {
+        width: 20px;
+        position: relative;
+        top: 100%;
+        right: 8%;
+        transform: translateY(-100%);
+      }
+
+      .main {
+        border: 2px solid black;
+        border-radius: 5px;
+        width: 50%;
+        max-width: 600px;
+        padding: 10px;
+        background-color: white;
+        position: relative;
+        box-sizing: border-box;
+        overflow-y: auto;
+        max-height: 100%;
+      }
+
+      .logo {
+        display: flex;
+        justify-content: center;
+      }
+
+      .logo img {
+        width: 80%;
+        max-width: 300px;
+        cursor: pointer;
+      }
+
+      .select {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .select button {
+        cursor: pointer;
+        font-size: 14px;
+        padding: 10px 0px;
+        border: 1px solid black;
+        flex: 1;
+        box-sizing: border-box;
+      }
+
+      .pagAtual {
+        background-color: #073763;
+        color: white;
+      }
+
+      .pagLado {
+        background-color: #d9d9d9;
+      }
+
+      .pagAtual:hover,
+      .pagLado:hover {
+        background-color: #95bcf2;
+      }
+
+      .pagAtual:active,
+      .pagLado:active {
+        background-color: #073763;
+        color: white;
+        font-weight: bold;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 10px;
+      }
+
+      .form label {
+        margin: 10px;
+        font-size: 16px;
+        text-align: center;
+      }
+
+      .form span {
+        color: #ff0000;
+      }
+
+      .form select {
+        font-size: 16px;
+        margin-bottom: 20px;
+        background-color: #d9d9d9;
+        width: 60%;
+        border: 1px solid black;
+        padding-left: 8px;
+        padding: 5px;
+        border-radius: 3px;
+        box-sizing: border-box;
+      }
+      input:hover {
+        border: 1px solid #0085ff;
+        outline: 0;
+      }
+
+      input:focus {
+        border: 1px solid #0085ff;
+        outline: 0;
+      }
+
+      .proximo {
+        display: flex;
+        justify-content: flex-end;
+        box-sizing: border-box;
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      .proximo img {
+        width: 20px;
+        margin-right: 5px;
+      }
+
+      .proximo button {
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        padding: 3px 15px;
+        font-size: 16px;
+        background-color: #009e0f;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+      }
+
+      .proximo button:hover {
+        background-color: #4c9f38;
+      }
+
+      .proximo button:active {
+        background-color: #00ff49;
+        color: black;
+        font-weight: bold;
+      }
+
+      .proximo button:active img {
+        filter: invert(1);
+      }
+
+      .form form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 10px;
+      }
+
+      .custom-file-upload {
+        display: inline-block;
+        padding: 5px 15px;
+        cursor: pointer;
+        border: 1px solid black;
+        background-color: #d9d9d9;
+        box-sizing: border-box;
+        align-items: center;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+      }
+
+      .custom-file-upload img {
+        width: 20px;
+        margin-right: 5px;
+      }
+
+      #file-upload {
+        display: none;
+      }
+      @media (max-width: 768px) {
+  .select button {
+    flex: 1 1 45%;
+    font-size: 12px;
+    padding: 10px 10px;
+  }
+
+  .proximo {
+    justify-content: center;
+  }
+
+  .main {
+    width: 80%;
+    padding: 5px;
+  }
+
+  .custom-file-upload {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .select button {
+    flex: 1 1 100%;
+    font-size: 10px;
+    padding: 10px 5px;
+  }
+
+  .logo img {
+    width: 70%;
+  }
+
+  .custom-file-upload {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
+}
+
+@media (max-height: 500px) {
+  body {
+    padding-top: 20px;
+  }
+  .main {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="voltar">
+        <button onclick="Voltar()">
+          <img src="/Login/Icons/image 3.png" alt="Voltar" />Voltar
+        </button>
+      </div>
+
+      <div class="logo">
+        <img
+          onclick="voltarFoto()"
+          src="/Login/imagens/logo fortes 1.png"
+          alt="Logo"
+        />
+      </div>
+      <div class="select">
+        <button onclick="irParaDados()" class="pagLado">Dados Gerais</button>
+        <button onclick="irParaSenha()" class="pagLado">Senha</button>
+        <button onclick="irParaFinalidade()" class="pagAtual">
+          Finalidade
+        </button>
+      </div>
+
+      <div class="form">
+        <label for="nomeResponsavel"
+          >Qual o intuito da sua instituição? <span>*</span>
+        </label>
+        <select required name="finalidade" id="finalidade">
+          <optgroup label="Selecione seu intuito">
+            <option value="ErradicacaoPobreza">Erradicação da Pobreza</option>
+            <option value="FomeZero">
+              Fome Zero e Agricultura Sustentável
+            </option>
+            <option value="Saude">Saúde e Bem-Estar</option>
+            <option value="Educacao">Educação de Qualidade</option>
+            <option value="Água">Água Potável e Saneamento</option>
+            <option value="Industria">
+              Indústria, Inovação e Infraestrutura
+            </option>
+            <option value="Comunidades">
+              Cidades e Comunidades Sustentáveis
+            </option>
+            <option value="Parcerias">
+              Parcerias e Meios de Implementação
+            </option>
+          </optgroup>
+        </select>
+
+        <form
+          id="upload-form"
+          enctype="multipart/form-data"
+          onsubmit="return Concluido()"
+        >
+          <label for="">Fotos do Projeto/Instituição <span>*</span></label>
+          <label for="file-upload" class="custom-file-upload">
+            <img src="/Login/Icons/download.png" alt="Anexar fotos" /> Anexar
+            Fotos
+          </label>
+          <input
+            id="file-upload"
+            type="file"
+            name="fotos"
+            accept="image/*"
+            multiple
+          />
+        </form>
+        <p id="file-error"></p>
+
+        <div class="proximo">
+          <button onclick="Concluido(event)">
+            <img src="/Login/Icons/check.png" alt="Próximo" /> Próximo
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function Voltar() {
+        window.location.href = "/Login/Cadastrar/senha.html";
+      }
+
+      function voltarFoto() {
+        window.location.href = "/Login/login.html";
+      }
+
+      function irParaDados() {
+        window.location.href = "/Login/Cadastrar/cadastrar.html";
+      }
+      function irParaSenha() {
+        window.location.href = "/Login/Cadastrar/senha.html";
+      }
+
+      function irParaFinalidade() {
+        window.location.href = "/Login/Cadastrar/finalidade.html";
+      }
+
+      function Concluido(event) {
+        event.preventDefault();
+        const fileInput = document.getElementById("file-upload");
+        const errorElement = document.getElementById("file-error");
+        const files = fileInput.files;
+        const maxFiles = 5;
+        const validImageTypes = ["image/jpeg", "image/png", "image/gif"];
+
+        if (files.length === 0) {
+          errorElement.textContent =
+            "Por favor, selecione pelo menos uma foto.";
+          errorElement.style.display = "block";
+          return false;
+        }
+
+        if (files.length > maxFiles) {
+          errorElement.textContent = "Você pode enviar no máximo 5 fotos.";
+          errorElement.style.display = "block";
+          return false;
+        }
+
+        for (let i = 0; i < files.length; i++) {
+          if (!validImageTypes.includes(files[i].type)) {
+            errorElement.textContent =
+              "Todos os arquivos devem ser fotos no formato JPG, PNG ou GIF.";
+            errorElement.style.display = "block";
+            return false;
+          }
+        }
+        window.location.href = "/PáginaEntidade/PrincipEntidade.html";
+        return true;
+      }
+    </script>
+  </body>
+</html>

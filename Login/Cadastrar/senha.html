@@ -16,17 +16,21 @@
       body {
         font-family: "Roboto", Helvetica, sans-serif;
         background-color: #f0f2f5;
-        font-size: 25px;
         padding-top: 50px;
         margin: 0;
         display: flex;
         justify-content: center;
+        align-items: center;
+        height: 100vh;
+        box-sizing: border-box;
+        overflow: hidden;
       }
 
       .voltar {
         display: flex;
         box-sizing: border-box;
       }
+
       .voltar button {
         border: none;
         font-size: 16px;
@@ -38,6 +42,7 @@
       .voltar button:hover {
         font-weight: bold;
       }
+
       .voltar button:active {
         font-weight: bold;
       }
@@ -54,29 +59,176 @@
         border: 2px solid black;
         border-radius: 5px;
         width: 50%;
+        max-width: 600px;
         padding: 10px;
         background-color: white;
         position: relative;
+        box-sizing: border-box;
+        overflow-y: auto;
+        max-height: 100%; 
       }
 
-      
-      .logo{
+      .logo {
         display: flex;
         justify-content: center;
       }
-      .logo img{
-        width: 300px;
+
+      .logo img {
+        width: 80%;
+        max-width: 300px;
+        cursor: pointer;
       }
-            
-     .select {
-      display: flex;
-      flex-direction:row;
-      justify-content: space-evenly;
-       
+
+      .select {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        justify-content: center;
+        gap: 10px;
       }
-      .select div{
+
+      .select button {
+        cursor: pointer;
+        font-size: 14px;
+        padding: 10px 0px;
+        border: 1px solid black;
+        flex: 1;
+        box-sizing: border-box;
       }
-      </style>
+
+      .pagAtual {
+        background-color: #073763;
+        color: white;
+      }
+
+      .pagLado {
+        background-color: #d9d9d9;
+      }
+
+      .pagAtual:hover, .pagLado:hover {
+        background-color: #95bcf2;
+      }
+
+      .pagAtual:active, .pagLado:active {
+        background-color: #073763;
+        color: white;
+        font-weight: bold;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 10px;
+      }
+
+      .form label {
+        margin: 10px;
+        font-size: 16px;
+        text-align: center;
+      }
+
+      .form span {
+        color: #ff0000;
+      }
+
+      .form input {
+        width: 80%;
+        border: 1px solid black;
+        font-size: 18px;
+        background-color: #d9d9d9;
+        padding: 5px;
+        padding-left: 8px;
+        border-radius: 3px;
+        box-sizing: border-box;
+      }
+
+      input:hover {
+        border: 1px solid #0085ff;
+        outline: 0;
+      }
+
+      input:focus {
+        border: 1px solid #0085ff;
+        outline: 0;
+      }
+
+      .proximo {
+        display: flex;
+        justify-content: flex-end;
+        box-sizing: border-box;
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      .proximo img {
+        width: 25px;
+        margin-right: 5px;
+      }
+
+      .proximo button {
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        padding: 3px 15px;
+        font-size: 16px;
+        background-color: #009e0f;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+      }
+
+      .proximo button:hover {
+        background-color: #4c9f38;
+      }
+
+      .proximo button:active {
+        background-color: #00ff49;
+        color: black;
+        font-weight: bold;
+      }
+
+      .proximo button:active img {
+        filter: invert(1);
+      }
+
+      
+      @media (max-width: 768px) {
+        .select button {
+          flex: 1 1 45%;
+          font-size: 12px;
+          padding: 10px 10px;
+        }
+
+        .proximo {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .select button {
+          flex: 1 1 100%;
+          font-size: 12px;
+          padding: 10px 5px;
+        }
+
+        .logo img {
+          width: 70%;
+        }
+      }
+
+      @media (max-height: 500px) {
+        body {
+          padding-top: 20px;
+        }
+        .main {
+          width: 100%;
+          max-width: 400px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="main">
@@ -86,28 +238,62 @@
         </button>
       </div>
 
-      <div class="logo"><img src="/Login/imagens/logo fortes 1.png" alt="Logo" /></div>
+      <div class="logo">
+        <img
+          onclick="voltarFoto()"
+          src="/Login/imagens/logo fortes 1.png"
+          alt="Logo"
+        />
+      </div>
       <div class="select">
-          <div>Dados Gerais</div>
-          <div>Senha</div>
-          <div>Finalidade</div>
+        <button onclick="irParaDados()" class="pagLado">Dados Gerais</button>
+        <button onclick="irParaSenha()" class="pagAtual">Senha</button>
+        <button onclick="irParaFinalidade()" class="pagLado">Finalidade</button>
       </div>
 
       <div class="form">
-          <label for="criarSenha">Crie uma nova senha:</label>
-          <input type="password" name="senha" id="senha">
-          
-          <label for="confirmarSenha">Confirme sua senha:</label>
-          <input type="password" name="confirmarSenha" id="senha">
-          
-          
+        <label for="nomeResponsavel">Crie uma nova senha <span>*</span> </label>
+        <input required type="text" name="criarSenha" required id="criarSenha" />
+
+        <label for="nomeResponsavel">Confirme sua senha <span>*</span> </label>
+        <input required type="text" name="confirmeSenha" required id="confirmeSenha" />
+
+        <p><span>*</span> Ao menos uma letra maiuscula</p> 
+        
+        <p><span>*</span> A senha deve ter no mínimo 8 caracteres</p> 
+        
+        <p><span>*</span> A senha requer, no mínimo, um caractere especial</p> 
+
+        <p><span>*</span> Evite palavras comuns ou sequências óbvias de caracteres</p> 
+
+
+      <div class="proximo">
+        <button onclick="irParaFinalidade()">
+          <img src="/Login/Icons/Arrow 1.png" alt="Próximo" /> Próximo
+        </button>
       </div>
     </div>
 
     <script>
       function Voltar() {
-        window.history.back();
+        window.location.href = "/Login/Cadastrar/cadastrar.html"
       }
+
+      function voltarFoto() {
+        window.location.href = "/Login/login.html"
+      }
+
+      function irParaDados() {
+        window.location.href = "/Login/Cadastrar/cadastrar.html"
+      }
+      function irParaSenha() {
+        window.location.href = "/Login/Cadastrar/senha.html"
+      }
+
+      function irParaFinalidade() {
+        window.location.href = "/Login/Cadastrar/finalidade.html"
+      }
+
     </script>
   </body>
 </html>

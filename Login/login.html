@@ -15,7 +15,7 @@
       </div>
       
       <section class="divDireita">
-        <img src="/Login/imagens/logo fortes 1.png" alt="Logo Fortes" />
+        <img onclick="voltarLanding()" src="/Login/imagens/logo fortes 1.png" alt="Logo Fortes" />
 
         <div class="form">
           <div class="input-container">
@@ -47,7 +47,7 @@
         </div>
 
         <span class="span">É uma entidade carente e deseja se associar?</span>
-        <button onclick="acessarCadastro()" type="button" class="botaoAssociar">
+        <button onclick="acessarCadastro(), handleClick(this)" type="button" class="botaoAssociar">
           Associar-me
         </button>
       </section>
@@ -57,6 +57,16 @@
       function acessarCadastro(){
         window.location.href = "/Login/Cadastrar/cadastrar.html"
       }
+
+      function voltarLanding() {
+        window.location.href = "/index.html"
+      }
+
+      function handleClick(button) {
+  button.classList.add('active');
+}
+
+
     </script>
   </body>
 </html>
