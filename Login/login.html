@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Entre ou cadastre-se</title>
     <link rel="stylesheet" href="./CSS/login.css" />
-    <link rel="shortcut icon" href="/Login/Icons/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./Login/Icons/favicon.png" type="image/x-icon">
   </head>
   <body>
     <div class="container">
       <div class="divEsquerda">
         <img
-        src="/Login/imagens/coracao-de-papel-colocado-nas-maos-do-casal-na-mesa-de-marmore 1.png" alt="Coração com as mãos">
+        src="./Login/imagens/coracao-de-papel-colocado-nas-maos-do-casal-na-mesa-de-marmore 1.png" alt="Coração com as mãos">
       </div>
       
       <section class="divDireita">
-        <img onclick="voltarLanding()" src="/Login/imagens/logo fortes 1.png" alt="Logo Fortes" />
+        <img onclick="voltarLanding()" src="./Login/imagens/logo fortes 1.png" alt="Logo Fortes" />
 
         <div class="form">
           <div class="input-container">
@@ -25,7 +25,7 @@
             required
             placeholder="Entre com seu email"
             id="email">
-            <img src="/Login/Icons/image 1.png" alt="Person" class="img1">
+            <img src="./Login/Icons/image 1.png" alt="Person" class="img1">
           </div>
             
             <input
@@ -35,7 +35,7 @@
             placeholder="Senha"
             id="senha">
             
-            <span><a href="/Login/redefinirSenha.html">Esqueceu sua senha?</a><span>
+            <span><a href="./Login/redefinirSenha.html">Esqueceu sua senha?</a><span>
         </div>
         <button onclick="acessarLogin()" type="button" class="botaoLogin">
           Iniciar Sessão
@@ -55,11 +55,11 @@
 
     <script>
       function acessarCadastro(){
-        window.location.href = "/Login/Cadastrar/cadastrar.html"
+        window.location.href = "./Login/Cadastrar/cadastrar.html"
       }
 
       function voltarLanding() {
-        window.location.href = "/index.html"
+        window.location.href = "./index.html"
       }
 
       function handleClick(button) {
