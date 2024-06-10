@@ -11,8 +11,11 @@
 
       body {
         font-family: "Roboto", Helvetica, sans-serif;
-        background-color: #f0f2f5;
-        padding-top: 50px;
+        background-image: url("/Login/imagens/ImagemFundoFortes.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        padding-top: 20px;
         padding-bottom: 20px;
         margin: 0;
         display: flex;
@@ -56,7 +59,7 @@
       }
 
       .main {
-        border: 2px solid black;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 1);
         border-radius: 5px;
         width: 90%;
         max-width: 600px;
@@ -91,9 +94,9 @@
       .select button {
         cursor: pointer;
         font-size: 14px;
-        padding: 10px 0px;
+        padding: 10px 20px;
         border: 1px solid black;
-        flex: 1;
+        flex: 1 1 30%;
         box-sizing: border-box;
       }
 
@@ -121,24 +124,33 @@
       .form {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        margin-left: 10px;
+        align-items: center;
       }
 
       .form label {
         margin: 10px;
         font-size: 16px;
-        text-align: center;
+        text-align: start;
       }
 
       .form span {
         color: #ff0000;
       }
 
-      .form input {
-        width: 80%;
+      #descricao {
+        width: 90%;
+        height: 150px;
+        resize: none;
+      }
+
+      #valor {
+        width: 20%;
+      }
+
+      .form input,
+      .form textarea {
         border: 1px solid black;
-        font-size: 18px;
+        font-size: 14px;
         background-color: #d9d9d9;
         padding: 5px;
         padding-left: 8px;
@@ -146,12 +158,14 @@
         box-sizing: border-box;
       }
 
-      input:hover {
+      input:hover,
+      textarea:hover {
         border: 1px solid #0085ff;
         outline: 0;
       }
 
-      input:focus {
+      input:focus,
+      textarea:focus {
         border: 1px solid #0085ff;
         outline: 0;
       }
@@ -196,8 +210,24 @@
         filter: invert(1);
       }
 
-      input.invalid {
+      input.invalid,
+      textarea.invalid {
         border-color: #ff0000;
+      }
+
+      @media (max-width: 1024px) {
+        .main {
+          max-width: 80%;
+          padding: 10px;
+        }
+
+        .voltar {
+          justify-content: flex-start;
+        }
+
+        .proximo {
+          justify-content: center;
+        }
       }
 
       @media (max-width: 768px) {
@@ -209,6 +239,10 @@
 
         .proximo {
           justify-content: center;
+        }
+
+        #valor {
+          width: 40%;
         }
       }
 
@@ -222,12 +256,18 @@
         .logo img {
           width: 70%;
         }
+
+        #valor {
+          width: 60%;
+        }
       }
 
       @media (max-height: 500px) {
         body {
           padding-top: 20px;
+          padding-bottom: 20px;
         }
+
         .main {
           width: 100%;
           max-width: 400px;
@@ -239,65 +279,64 @@
     <div class="main">
       <div class="voltar">
         <button onclick="Voltar()">
-          <img src="../Icons/Arrow 1.png" alt="Voltar" />Voltar
+          <img src="/Login/Icons/Arrow 1.png" alt="Voltar" />Voltar
         </button>
       </div>
 
       <div class="logo">
         <img
           onclick="voltarFoto()"
-          src="../imagens/logo fortes 1.png"
+          src="/Login/imagens/logo fortes 1.png"
           alt="Logo"
         />
       </div>
       <div class="select">
-        <button onclick="irParaDados()" class="pagLado">Dados Gerais</button>
-        <button onclick="irParaSenha()" class="pagAtual">Senha</button>
-        <button onclick="irParaFinalidade()" class="pagLado">Finalidade</button>
+        <button onclick="irParaProcessamento()" class="pagAtual">
+          Processamento
+        </button>
+        <button onclick="irParaAprovacao()" class="pagLado">Aprovação</button>
+        <button onclick="irParaConfirmacao()" class="pagLado">
+          Confirmação
+        </button>
       </div>
 
       <div class="form">
-        <label for="nomeResponsavel">Crie uma nova senha <span>*</span> </label>
-        <input required type="text" name="criarSenha" id="criarSenha" />
+        <label for="descricao">Descrição do novo chamado: <span>*</span></label>
+        <textarea required name="descricao" id="descricao"></textarea>
 
-        <label for="nomeResponsavel">Confirme sua senha <span>*</span> </label>
-        <input required type="text" name="confirmeSenha" id="confirmeSenha" />
-
-        <p><span>*</span> Ao menos uma letra maiuscula</p>
-        <p><span>*</span> A senha deve ter no mínimo 8 caracteres</p>
-        <p><span>*</span> A senha requer, no mínimo, um caractere especial</p>
-        <p>
-          <span>*</span> Evite palavras comuns ou sequências óbvias de
-          caracteres
-        </p>
+        <label for="valor">Valor Requisitado: <span>*</span> </label>
+        <input
+          required
+          type="text"
+          name="valor"
+          id="valor"
+          placeholder="R$ 0000,00"
+        />
       </div>
 
       <div class="proximo">
-        <button onclick="irParaFinalidade()">
-          <img src="../Icons/Arrow 1.png" alt="Próximo" /> Próximo
+        <button onclick="irParaAprovacao()">
+          <img src="/Login/Icons/Arrow 1.png" alt="Próximo" /> Próximo
         </button>
       </div>
     </div>
-
     <script>
       function Voltar() {
-        window.location.href = "../Cadastrar/cadastrar.html";
+        window.location.pathname = "/PáginaEntidade/PrincipEntidade.html";
       }
 
       function voltarFoto() {
-        window.location.href = "../login.html";
+        window.location.href = "/index.html";
       }
 
-      function irParaDados() {
-        window.location.href = "../Cadastrar/cadastrar.html";
+      function irParaProcessamento() {
+        window.location.href = "./solicitarChamado.html";
       }
 
-      function irParaSenha() {
-        window.location.href = "../Cadastrar/senha.html";
-      }
-
-      function irParaFinalidade() {
-        var inputs = document.querySelectorAll(".form input[required]");
+      function irParaAprovacao() {
+        var inputs = document.querySelectorAll(
+          ".form input[required], .form textarea[required]"
+        );
         var allFilled = true;
         for (var i = 0; i < inputs.length; i++) {
           if (inputs[i].value === "") {
@@ -308,7 +347,25 @@
           }
         }
         if (allFilled) {
-          window.location.href = "../Cadastrar/finalidade.html";
+          window.location.href = "./aprovacao.html";
+        }
+      }
+
+      function irParaConfirmacao() {
+        var inputs = document.querySelectorAll(
+          ".form input[required], .form textarea[required]"
+        );
+        var allFilled = true;
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].value === "") {
+            inputs[i].classList.add("invalid");
+            allFilled = false;
+          } else {
+            inputs[i].classList.remove("invalid");
+          }
+        }
+        if (allFilled) {
+          window.location.href = "./confirmacao.html";
         }
       }
     </script>

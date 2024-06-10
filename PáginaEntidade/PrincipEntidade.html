@@ -1,16 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Principal</title>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chamados</title>
     <link
-    rel="shortcut icon"
-    href="../Login/Icons/favicon.png"
-    type="image/x-icon"
-  />
-</head>
-<body>
-    Menu Principal
-</body>
+      rel="shortcut icon"
+      href="../Login/Icons/favicon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar" id="sidebar">
+        <div class="user">
+          <img src="../Login/Icons/do-utilizador.png" alt="user" />
+          <h3>Nome da Instituição</h3>
+        </div>
+        <div onclick="dadosGerais()" class="menu-item">
+          <i class="fas fa-info-circle"></i><span>Dados Gerais</span>
+        </div>
+        <div onclick="chamados()" class="menu-item selecionado">
+          <i class="fa-solid fa-arrow-up-from-bracket"></i><span>Chamados</span>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <nav>
+          <button
+            class="menu-toggle"
+            id="menu-toggle"
+            onclick="toggleSidebar()"
+          >
+            ☰
+          </button>
+          <img
+            onclick="voltarFoto()"
+            src="../Login/imagens/logo fortes 1.png"
+            alt="logo Fortes"
+          />
+          <i onclick="voltari()" class="fa-solid fa-arrow-up-from-bracket"></i>
+        </nav>
+        <div class="content">
+          <div class="telas tela1">
+            <div class="azul">
+              <h2>Projeto A:</h2>
+            </div>
+            <p>Informações:</p>
+          </div>
+          <div class="content2">
+            <div class="telas tela2">
+              <h2>Chamados Anteriores</h2>
+              <p>Projeto B:</p>
+              <p>Projeto C:</p>
+              <p>Projeto D:</p>
+            </div>
+            <div class="relatorios-container">
+              <div class="telas tela3">
+                <h2>Relatórios</h2>
+                <p></p>
+                <p></p>
+              </div>
+              <button onclick="solicitarChamado()" class="solicitarChamado">
+                Solicitar Chamado
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <script>
+      function dadosGerais() {
+        window.location.pathname = "../PáginaEntidade/DadosEntidade.html";
+      }
+
+      function chamados() {
+        window.location.pathname = "../PáginaEntidade/PrincipEntidade.html";
+      }
+      function voltarFoto() {
+        window.location.pathname = "../index.html";
+      }
+
+      function voltari() {
+        window.location.pathname = "../Login/login.html";
+      }
+
+      function solicitarChamado() {
+        window.location.pathname =
+          "../PáginaEntidade/solicitarChamado/solicitarChamado.html";
+      }
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      }
+    </script>
+  </body>
 </html>

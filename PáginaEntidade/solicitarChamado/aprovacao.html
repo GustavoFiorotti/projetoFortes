@@ -11,8 +11,11 @@
 
       body {
         font-family: "Roboto", Helvetica, sans-serif;
-        background-color: #f0f2f5;
-        padding-top: 50px;
+        background-image: url("/Login/imagens/ImagemFundoFortes.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        padding-top: 20px;
         padding-bottom: 20px;
         margin: 0;
         display: flex;
@@ -56,7 +59,7 @@
       }
 
       .main {
-        border: 2px solid black;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 1);
         border-radius: 5px;
         width: 90%;
         max-width: 600px;
@@ -91,9 +94,9 @@
       .select button {
         cursor: pointer;
         font-size: 14px;
-        padding: 10px 0px;
+        padding: 10px 20px;
         border: 1px solid black;
-        flex: 1;
+        flex: 1 1 30%;
         box-sizing: border-box;
       }
 
@@ -121,39 +124,20 @@
       .form {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        margin-left: 10px;
+        align-items: center;
       }
 
       .form label {
         margin: 10px;
         font-size: 16px;
-        text-align: center;
-      }
-
-      .form span {
-        color: #ff0000;
-      }
-
-      .form input {
-        width: 80%;
-        border: 1px solid black;
-        font-size: 18px;
+        text-align: start;
         background-color: #d9d9d9;
-        padding: 5px;
-        padding-left: 8px;
-        border-radius: 3px;
-        box-sizing: border-box;
+        padding: 5px 80px;
+        border: 1px solid black;
       }
 
-      input:hover {
-        border: 1px solid #0085ff;
-        outline: 0;
-      }
-
-      input:focus {
-        border: 1px solid #0085ff;
-        outline: 0;
+      .form p {
+        margin: 10px;
       }
 
       .proximo {
@@ -196,8 +180,24 @@
         filter: invert(1);
       }
 
-      input.invalid {
+      input.invalid,
+      textarea.invalid {
         border-color: #ff0000;
+      }
+
+      @media (max-width: 1024px) {
+        .main {
+          max-width: 80%;
+          padding: 10px;
+        }
+
+        .voltar {
+          justify-content: flex-start;
+        }
+
+        .proximo {
+          justify-content: center;
+        }
       }
 
       @media (max-width: 768px) {
@@ -227,7 +227,9 @@
       @media (max-height: 500px) {
         body {
           padding-top: 20px;
+          padding-bottom: 20px;
         }
+
         .main {
           width: 100%;
           max-width: 400px;
@@ -239,77 +241,60 @@
     <div class="main">
       <div class="voltar">
         <button onclick="Voltar()">
-          <img src="../Icons/Arrow 1.png" alt="Voltar" />Voltar
+          <img src="/Login/Icons/Arrow 1.png" alt="Voltar" />Voltar
         </button>
       </div>
 
       <div class="logo">
         <img
           onclick="voltarFoto()"
-          src="../imagens/logo fortes 1.png"
+          src="/Login/imagens/logo fortes 1.png"
           alt="Logo"
         />
       </div>
       <div class="select">
-        <button onclick="irParaDados()" class="pagLado">Dados Gerais</button>
-        <button onclick="irParaSenha()" class="pagAtual">Senha</button>
-        <button onclick="irParaFinalidade()" class="pagLado">Finalidade</button>
+        <button onclick="irParaProcessamento()" class="pagLado">
+          Processamento
+        </button>
+        <button onclick="irParaAprovacao()" class="pagAtual">Aprovação</button>
+        <button onclick="irParaConfirmacao()" class="pagLado">
+          Confirmação
+        </button>
       </div>
 
       <div class="form">
-        <label for="nomeResponsavel">Crie uma nova senha <span>*</span> </label>
-        <input required type="text" name="criarSenha" id="criarSenha" />
-
-        <label for="nomeResponsavel">Confirme sua senha <span>*</span> </label>
-        <input required type="text" name="confirmeSenha" id="confirmeSenha" />
-
-        <p><span>*</span> Ao menos uma letra maiuscula</p>
-        <p><span>*</span> A senha deve ter no mínimo 8 caracteres</p>
-        <p><span>*</span> A senha requer, no mínimo, um caractere especial</p>
-        <p>
-          <span>*</span> Evite palavras comuns ou sequências óbvias de
-          caracteres
-        </p>
+        <label for="descricao">Seu chamado está em análise</label>
+        <p>Verifique o Email cadastrado para possíveis atualizações</p>
+        <p>Sua posição na fila: 0001</p>
       </div>
 
       <div class="proximo">
-        <button onclick="irParaFinalidade()">
-          <img src="../Icons/Arrow 1.png" alt="Próximo" /> Próximo
+        <button onclick="irParaConfirmacao()">
+          <img src="/Login/Icons/Arrow 1.png" alt="Próximo" /> Próximo
         </button>
       </div>
     </div>
-
     <script>
       function Voltar() {
-        window.location.href = "../Cadastrar/cadastrar.html";
+        window.location.pathname =
+          "/PáginaEntidade/solicitarChamado/solicitarChamado.html";
       }
 
       function voltarFoto() {
-        window.location.href = "../login.html";
+        window.location.href = "/index.html";
       }
 
-      function irParaDados() {
-        window.location.href = "../Cadastrar/cadastrar.html";
+      function irParaProcessamento() {
+        window.location.href =
+          "/PáginaEntidade/solicitarChamado/solicitarChamado.html";
       }
 
-      function irParaSenha() {
-        window.location.href = "../Cadastrar/senha.html";
+      function irParaAprovacao() {
+        window.location.href = "./aprovacao.html";
       }
 
-      function irParaFinalidade() {
-        var inputs = document.querySelectorAll(".form input[required]");
-        var allFilled = true;
-        for (var i = 0; i < inputs.length; i++) {
-          if (inputs[i].value === "") {
-            inputs[i].classList.add("invalid");
-            allFilled = false;
-          } else {
-            inputs[i].classList.remove("invalid");
-          }
-        }
-        if (allFilled) {
-          window.location.href = "../Cadastrar/finalidade.html";
-        }
+      function irParaConfirmacao() {
+        window.location.href = "./confirmacao.html";
       }
     </script>
   </body>

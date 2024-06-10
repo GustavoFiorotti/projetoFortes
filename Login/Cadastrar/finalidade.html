@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro</title>
-    <link
-      rel="shortcut icon"
-      href="../Icons/favicon.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="../Icons/favicon.png" type="image/x-icon" />
     <style>
       @charset "UTF-8";
       @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
@@ -28,13 +24,17 @@
 
       .voltar {
         display: flex;
+        justify-content: flex-start;
         box-sizing: border-box;
+        margin-top: 20px;
+        width: 100%;
       }
 
       .voltar button {
+        display: flex;
+        align-items: center;
         border: none;
         font-size: 16px;
-        padding: 0 0 0 5px;
         cursor: pointer;
         background-color: white;
       }
@@ -49,16 +49,14 @@
 
       .voltar img {
         width: 20px;
-        position: relative;
-        top: 100%;
-        right: 8%;
-        transform: translateY(-100%);
+        margin-right: 5px;
+        filter: invert(1);
+        rotate: 180deg;
       }
-
       .main {
         border: 2px solid black;
         border-radius: 5px;
-        width: 50%;
+        width: 90%;
         max-width: 600px;
         padding: 10px;
         background-color: white;
@@ -214,6 +212,14 @@
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
       }
 
+      .custom-file-upload:hover {
+        font-weight: bold;
+      }
+
+      .custom-file-upload:active {
+        font-weight: bold;
+        background-color: #95bcf2;
+      }
       .custom-file-upload img {
         width: 20px;
         margin-right: 5px;
@@ -222,62 +228,65 @@
       #file-upload {
         display: none;
       }
+
+      #file-error {
+        color: #ff0000;
+      }
       @media (max-width: 768px) {
-  .select button {
-    flex: 1 1 45%;
-    font-size: 12px;
-    padding: 10px 10px;
-  }
+        .select button {
+          flex: 1 1 45%;
+          font-size: 12px;
+          padding: 10px 10px;
+        }
 
-  .proximo {
-    justify-content: center;
-  }
+        .proximo {
+          justify-content: center;
+        }
 
-  .main {
-    width: 80%;
-    padding: 5px;
-  }
+        .main {
+          width: 80%;
+          padding: 5px;
+        }
 
-  .custom-file-upload {
-    font-size: 12px;
-    padding: 3px 10px;
-  }
-}
+        .custom-file-upload {
+          font-size: 12px;
+          padding: 3px 10px;
+        }
+      }
 
-@media (max-width: 480px) {
-  .select button {
-    flex: 1 1 100%;
-    font-size: 10px;
-    padding: 10px 5px;
-  }
+      @media (max-width: 480px) {
+        .select button {
+          flex: 1 1 100%;
+          font-size: 10px;
+          padding: 10px 5px;
+        }
 
-  .logo img {
-    width: 70%;
-  }
+        .logo img {
+          width: 70%;
+        }
 
-  .custom-file-upload {
-    font-size: 10px;
-    padding: 2px 8px;
-  }
-}
+        .custom-file-upload {
+          font-size: 10px;
+          padding: 2px 8px;
+        }
+      }
 
-@media (max-height: 500px) {
-  body {
-    padding-top: 20px;
-  }
-  .main {
-    width: 100%;
-    max-width: 400px;
-  }
-}
-
+      @media (max-height: 500px) {
+        body {
+          padding-top: 20px;
+        }
+        .main {
+          width: 100%;
+          max-width: 400px;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="main">
       <div class="voltar">
         <button onclick="Voltar()">
-          <img src="../Icons/image 3.png" alt="Voltar" />Voltar
+          <img src="../Icons/Arrow 1.png" alt="Voltar" />Voltar
         </button>
       </div>
 
@@ -328,8 +337,7 @@
         >
           <label for="">Fotos do Projeto/Instituição <span>*</span></label>
           <label for="file-upload" class="custom-file-upload">
-            <img src="../Icons/download.png" alt="Anexar fotos" /> Anexar
-            Fotos
+            <img src="../Icons/download.png" alt="Anexar fotos" /> Anexar Fotos
           </label>
           <input
             id="file-upload"
@@ -343,7 +351,7 @@
 
         <div class="proximo">
           <button onclick="Concluido(event)">
-            <img src="../Icons/check.png" alt="Próximo" /> Próximo
+            <img src="../Icons/check.png" alt="Concluir" /> Concluir
           </button>
         </div>
       </div>
@@ -355,7 +363,7 @@
       }
 
       function voltarFoto() {
-        window.location.href = "/projetoFortes/Login/login.html"
+        window.location.href = "../login.html";
       }
 
       function irParaDados() {
@@ -398,8 +406,7 @@
             return false;
           }
         }
-        window.location.href = "/PáginaEntidade/PrincipEntidade.html";
-        return true;
+        window.location.pathname = "/PáginaEntidade/PrincipEntidade.html";
       }
     </script>
   </body>

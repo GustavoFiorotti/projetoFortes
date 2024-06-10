@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Redefinir Senha</title>
-    <link
-      rel="shortcut icon"
-      href="./Icons/favicon.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="./Icons/favicon.png" type="image/x-icon" />
     <style>
       @charset "UTF-8";
       @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
@@ -22,7 +18,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh; /* Ajusta a altura da tela */
+        height: 100vh;
         box-sizing: border-box;
         overflow: hidden;
       }
@@ -38,12 +34,17 @@
 
       .voltar {
         display: flex;
+        justify-content: flex-start;
         box-sizing: border-box;
+        margin-top: 20px;
+        width: 100%;
       }
+
       .voltar button {
+        display: flex;
+        align-items: center;
         border: none;
         font-size: 16px;
-        padding: 0 0 0 5px;
         cursor: pointer;
         background-color: white;
       }
@@ -51,16 +52,16 @@
       .voltar button:hover {
         font-weight: bold;
       }
+
       .voltar button:active {
         font-weight: bold;
       }
 
       .voltar img {
         width: 20px;
-        position: relative;
-        top: 100%;
-        right: 8%;
-        transform: translateY(-100%);
+        margin-right: 5px;
+        filter: invert(1);
+        rotate: 180deg;
       }
 
       h1 {
@@ -228,7 +229,7 @@
     <div class="main">
       <div class="voltar">
         <button onclick="Voltar()">
-          <img src="./Icons/image 3.png" alt="Voltar" />Voltar
+          <img src="./Icons/Arrow 1.png" alt="Voltar" />Voltar
         </button>
       </div>
       <div class="container">
@@ -249,7 +250,7 @@
           <img src="./Icons/image 1.png" alt="Person" class="img1" />
           <button
             class="botaoRecuperar"
-            onclick="mostrarLogin(), handleClick(button)"
+            onclick="mostrarLogin(), handleClick(this)"
           >
             Enviar link de recuperação
           </button>
@@ -265,15 +266,16 @@
 
       function mostrarLogin() {
         var email = document.getElementById("email").value;
-        var botao = document.getElementsByClassName("botaoRecuperar").value;
 
-        if (email || botao) {
-          document.getElementById("resposta").innerText =
-            "Conta Admin:\n Login: Administrador Senha: adm123 \n \n Conta Usuário: \n Login: Donatario01 Senha: dona123 ";
-        } else {
-          document.getElementById("resposta").innerText =
-            "Preencha todas as informações.";
+        if (!email) {
+          document.getElementById("email").style.borderColor = "#c5192d";
+          return;
         }
+
+        document.getElementById("email").style.borderColor = "";
+
+        document.getElementById("resposta").innerText =
+          "Conta Admin:\n Login: Administrador Senha: adm123 \n \n Conta Usuário: \n Login: Donatario01 Senha: dona123 ";
       }
 
       function handleClick(button) {

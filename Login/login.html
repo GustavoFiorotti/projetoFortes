@@ -48,6 +48,7 @@
         <button onclick="acessarLogin()" type="button" class="botaoLogin">
           Iniciar Sessão
         </button>
+        <p id="errorMessage" style="color: #ff0000"></p>
         <div class="divider">
           <hr />
           <span class="span">OU</span>
@@ -71,6 +72,26 @@
 
       function voltarLanding() {
         window.location.href = "../index.html";
+      }
+
+      function handleClick(button) {
+        button.classList.add("active");
+      }
+
+      function acessarLogin() {
+        var login = document.getElementById("email").value;
+        var senha = document.getElementById("senha").value;
+
+        if (login === "Administrador" && senha === "adm123") {
+          window.location.href = "../PáginaAdmin/PrincipAdmin.html";
+        } else if (login === "Donatario01" && senha === "dona123") {
+          window.location.href = "../PáginaEntidade/PrincipEntidade.html";
+        } else {
+          document.getElementById("errorMessage").innerText =
+            "Login ou senha incorretos";
+          document.getElementById("email").style.borderColor = "#ff0000";
+          document.getElementById("senha").style.borderColor = "#ff0000";
+        }
       }
 
       function handleClick(button) {

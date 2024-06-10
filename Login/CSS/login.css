@@ -11,7 +11,7 @@ body {
 .container {
   display: flex;
   flex-wrap: wrap;
-  height: 100vh; /* Ajusta a altura da tela */
+  height: 100vh;
 }
 
 .divEsquerda {
@@ -92,7 +92,7 @@ span a {
   margin-top: 5px;
 }
 
-span a:hover{
+span a:hover {
   text-decoration: underline;
 }
 
@@ -157,14 +157,13 @@ button.botaoAssociar.active {
   padding: 0 10px;
 }
 
-/* Responsividade para celular */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
   }
 
   .divEsquerda {
-    display: none; /* Esconder a imagem no celular */
+    display: none;
   }
 
   .divDireita {
@@ -194,15 +193,18 @@ button.botaoAssociar.active {
     font-size: 18px;
   }
 }
+#errorMessage {
+  color: #ff0000;
+  margin-top: 30px;
+}
 
-/* Responsividade para tablets */
 @media (min-width: 768px) and (max-width: 1080px) {
   .container {
     flex-direction: column;
   }
 
   .divEsquerda {
-    display: none; /* Esconder a imagem no tablet */
+    display: none;
   }
 
   .divDireita {
@@ -235,9 +237,8 @@ button.botaoAssociar.active {
   }
 }
 
-/* Responsividade para telas pequenas em altura */
 @media (max-height: 690px) {
-  body{
+  body {
     overflow-y: auto;
   }
   .divDireita {

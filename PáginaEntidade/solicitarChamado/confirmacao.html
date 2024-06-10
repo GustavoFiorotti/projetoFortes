@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro</title>
+    <title>Confirmação</title>
     <link rel="shortcut icon" href="../Icons/favicon.png" type="image/x-icon" />
     <style>
       @charset "UTF-8";
@@ -11,8 +11,11 @@
 
       body {
         font-family: "Roboto", Helvetica, sans-serif;
-        background-color: #f0f2f5;
-        padding-top: 50px;
+        background-image: url("/Login/imagens/ImagemFundoFortes.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        padding-top: 20px;
         padding-bottom: 20px;
         margin: 0;
         display: flex;
@@ -56,7 +59,7 @@
       }
 
       .main {
-        border: 2px solid black;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 1);
         border-radius: 5px;
         width: 90%;
         max-width: 600px;
@@ -91,9 +94,9 @@
       .select button {
         cursor: pointer;
         font-size: 14px;
-        padding: 10px 0px;
+        padding: 10px 20px;
         border: 1px solid black;
-        flex: 1;
+        flex: 1 1 30%;
         box-sizing: border-box;
       }
 
@@ -121,24 +124,33 @@
       .form {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        margin-left: 10px;
+        align-items: center;
       }
 
-      .form label {
+      .form p {
+        margin: 10px;
+      }
+      .descricao {
         margin: 10px;
         font-size: 16px;
-        text-align: center;
+        text-align: start;
+        background-color: #d9d9d9;
+        padding: 5px 80px;
+        border: 1px solid black;
       }
 
       .form span {
         color: #ff0000;
       }
 
-      .form input {
+      #numeroConta,
+      #agenciaBancaria {
         width: 80%;
+      }
+
+      .form input {
         border: 1px solid black;
-        font-size: 18px;
+        font-size: 14px;
         background-color: #d9d9d9;
         padding: 5px;
         padding-left: 8px;
@@ -158,7 +170,7 @@
 
       .proximo {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
         box-sizing: border-box;
         margin-top: 20px;
         width: 100%;
@@ -200,6 +212,21 @@
         border-color: #ff0000;
       }
 
+      @media (max-width: 1024px) {
+        .main {
+          max-width: 80%;
+          padding: 10px;
+        }
+
+        .voltar {
+          justify-content: flex-start;
+        }
+
+        .proximo {
+          justify-content: center;
+        }
+      }
+
       @media (max-width: 768px) {
         .select button {
           flex: 1 1 45%;
@@ -209,6 +236,11 @@
 
         .proximo {
           justify-content: center;
+        }
+
+        #numeroConta,
+        #agenciaBancaria {
+          width: 90%;
         }
       }
 
@@ -222,12 +254,19 @@
         .logo img {
           width: 70%;
         }
+
+        #numeroConta,
+        #agenciaBancaria {
+          width: 100%;
+        }
       }
 
       @media (max-height: 500px) {
         body {
           padding-top: 20px;
+          padding-bottom: 20px;
         }
+
         .main {
           width: 100%;
           max-width: 400px;
@@ -239,64 +278,76 @@
     <div class="main">
       <div class="voltar">
         <button onclick="Voltar()">
-          <img src="../Icons/Arrow 1.png" alt="Voltar" />Voltar
+          <img src="/Login/Icons/Arrow 1.png" alt="Voltar" />Voltar
         </button>
       </div>
 
       <div class="logo">
         <img
           onclick="voltarFoto()"
-          src="../imagens/logo fortes 1.png"
+          src="/Login/imagens/logo fortes 1.png"
           alt="Logo"
         />
       </div>
       <div class="select">
-        <button onclick="irParaDados()" class="pagLado">Dados Gerais</button>
-        <button onclick="irParaSenha()" class="pagAtual">Senha</button>
-        <button onclick="irParaFinalidade()" class="pagLado">Finalidade</button>
+        <button onclick="irParaProcessamento()" class="pagLado">
+          Processamento
+        </button>
+        <button onclick="irParaAprovacao()" class="pagLado">Aprovação</button>
+        <button onclick="irParaConfirmacao()" class="pagAtual">
+          Confirmação
+        </button>
       </div>
 
       <div class="form">
-        <label for="nomeResponsavel">Crie uma nova senha <span>*</span> </label>
-        <input required type="text" name="criarSenha" id="criarSenha" />
-
-        <label for="nomeResponsavel">Confirme sua senha <span>*</span> </label>
-        <input required type="text" name="confirmeSenha" id="confirmeSenha" />
-
-        <p><span>*</span> Ao menos uma letra maiuscula</p>
-        <p><span>*</span> A senha deve ter no mínimo 8 caracteres</p>
-        <p><span>*</span> A senha requer, no mínimo, um caractere especial</p>
+        <label class="descricao" for="descricao"
+          >Seu chamado foi aprovado!!!</label
+        >
         <p>
-          <span>*</span> Evite palavras comuns ou sequências óbvias de
-          caracteres
+          Agora, preencha os campos abaixo com as informações necessárias para
+          que possamos responder o seu chamado assim que possível
         </p>
+
+        <label for="numeroConta">Número da conta:</label>
+        <input required type="text" name="numeroConta" id="numeroConta" />
+
+        <label for="agenciaBancaria">Agência Bancária:</label>
+        <input
+          required
+          type="text"
+          name="agenciaBancaria"
+          id="agenciaBancaria"
+        />
       </div>
 
       <div class="proximo">
-        <button onclick="irParaFinalidade()">
-          <img src="../Icons/Arrow 1.png" alt="Próximo" /> Próximo
+        <button onclick="confirmar()">
+          <img src="/Login/Icons/check.png"" alt="Confirmar" /> Confirmar
         </button>
       </div>
     </div>
-
     <script>
       function Voltar() {
-        window.location.href = "../Cadastrar/cadastrar.html";
+        window.location.href = "./aprovacao.html";
       }
 
       function voltarFoto() {
-        window.location.href = "../login.html";
+        window.location.href = "/index.html";
       }
 
-      function irParaDados() {
-        window.location.href = "../Cadastrar/cadastrar.html";
+      function irParaProcessamento() {
+        window.location.href = "./solicitarChamado.html";
       }
 
-      function irParaSenha() {
-        window.location.href = "../Cadastrar/senha.html";
+      function irParaAprovacao() {
+        window.location.href = "./aprovacao.html";
       }
 
-      function irParaFinalidade() {
+      function irParaConfirmacao() {
+        window.location.href = "./confirmacao.html";
+      }
+
+      function confirmar() {
         var inputs = document.querySelectorAll(".form input[required]");
         var allFilled = true;
         for (var i = 0; i < inputs.length; i++) {
@@ -308,7 +359,8 @@
           }
         }
         if (allFilled) {
-          window.location.href = "../Cadastrar/finalidade.html";
+          alert("Informações enviadas com sucesso!");
+          window.location.pathname = "/PáginaEntidade/PrincipEntidade.html";
         }
       }
     </script>
