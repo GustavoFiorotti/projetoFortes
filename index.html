@@ -1,11 +1,111 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
-</head>
-<body>
-    <a href="./Login/login.html">Login</a>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entre ou cadastre-se</title>
+    <link rel="stylesheet" href="./Login/CSS/login.css" />
+    <link rel="shortcut icon" href="./Login/Icons/favicon.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="divEsquerda">
+        <img
+          src="./Login/imagens/coracao-de-papel-colocado-nas-maos-do-casal-na-mesa-de-marmore 1.png"
+          alt="Coração com as mãos"
+        />
+      </div>
+
+      <section class="divDireita">
+        <img
+          onclick="voltarLanding()"
+          src="./Login/imagens/logo fortes 1.png"
+          alt="Logo Fortes"
+        />
+
+        <div class="form" id="loginForm">
+          <div class="input-container">
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Entre com seu email"
+              id="email"
+            />
+            <img src="./Login/Icons/image 1.png" alt="Person" class="img1" />
+          </div>
+
+          <input
+            type="password"
+            name="senha"
+            required
+            placeholder="Senha"
+            id="senha"
+          />
+
+          <span><a href="./Login/redefinirSenha.html">Esqueceu sua senha?</a></span>
+        </div>
+        <button onclick="acessarLogin()" type="button" class="botaoLogin">
+          Iniciar Sessão
+        </button>
+        <p id="errorMessage" style="color: #ff0000"></p>
+        <div class="divider">
+          <hr />
+          <span class="span">OU</span>
+          <hr />
+        </div>
+
+        <span class="span">É uma entidade carente e deseja se associar?</span>
+        <button
+          onclick="acessarCadastro(), handleClick(this)"
+          type="button"
+          class="botaoAssociar"
+        >
+          Associar-me
+        </button>
+      </section>
+    </div>
+    <script>
+      function acessarCadastro() {
+        window.location.href = "./Login/Cadastrar/cadastrar.html";
+      }
+
+      function voltarLanding() {
+        window.location.href = "/index.html";
+      }
+
+      function handleClick(button) {
+        button.classList.add("active");
+      }
+
+      function acessarLogin() {
+        var login = document.getElementById("email").value;
+        var senha = document.getElementById("senha").value;
+
+        if (login === "Administrador" && senha === "adm123") {
+          window.location.href = "./PaginaAdmin/PrincipAdmin.html";
+        } else if (login === "Donatario01" && senha === "dona123") {
+          window.location.href = "./PaginaEntidade/PrincipEntidade.html";
+        } else {
+          document.getElementById("errorMessage").innerText =
+            "Login ou senha incorretos";
+          document.getElementById("email").style.borderColor = "#ff0000";
+          document.getElementById("senha").style.borderColor = "#ff0000";
+        }
+      }
+
+      function handleClick(button) {
+        button.classList.add("active");
+      }
+
+      // Adicionando o evento de keyup ao formulário
+      document.getElementById("loginForm").addEventListener("keyup", function(event) {
+        // Número 13 é o código da tecla Enter
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          acessarLogin();
+        }
+      });
+    </script>
+  </body>
 </html>

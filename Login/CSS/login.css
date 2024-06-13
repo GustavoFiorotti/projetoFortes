@@ -257,4 +257,16 @@ button.botaoAssociar.active {
   .span {
     font-size: 18px;
   }
+
+  img.img1 {
+    top: 80%;
+    transform: translateY(-385%);
+  }
+}
+
+@media (max-height: 690px) and (max-width: 768px) {
+  img.img1 {
+    top: 80%;
+    transform: translateY(-400%);
+  }
 }
