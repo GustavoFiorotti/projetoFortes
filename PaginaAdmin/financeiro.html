@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Financeiro</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      .sidebar {
+        background-color: #073763;
+        width: 15%;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        position: relative; /* Change from absolute to relative */
+      }
+
+      .sidebar .user {
+        width: 100%;
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        background-color: #124588;
+        box-sizing: border-box;
+      }
+
+      .sidebar .user img {
+        width: 40%;
+      }
+
+      .sidebar .menu-item {
+        font-size: 18px;
+        width: 100%;
+        margin-top: 20px;
+        padding: 10px;
+        cursor: pointer;
+        box-sizing: border-box;
+        border: 3px solid black;
+        text-align: center;
+      }
+
+      .sidebar .menu-item:hover {
+        background-color: #124588;
+        font-weight: bold;
+      }
+
+      .sidebar .selecionado {
+        background-color: #124588;
+      }
+
+      .sidebar .selecionado:active,
+      .sidebar .menu-item:active {
+        font-weight: bold;
+        background-color: #95bcf2;
+        color: black;
+      }
+
+      .main-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: white;
+        position: relative;
+      }
+      nav img {
+        width: 200px;
+        cursor: pointer;
+      }
+      nav i {
+        rotate: 90deg;
+        transform: scale(130%);
+        cursor: pointer;
+      }
+      nav .menu-toggle {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        display: none;
+      }
+
+      .content {
+        padding: 20px;
+      }
+      .buttons {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+      }
+      .buttons button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background-color: #073763;
+      }
+
+      .buttons button:hover {
+        background-color: #124588;
+        font-weight: bold;
+      }
+      .buttons button:active {
+        font-weight: bold;
+        background-color: #95bcf2;
+        color: black;
+      }
+
+      .buttons .search-container {
+        display: flex;
+        align-items: center;
+      }
+      .buttons .search-container input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+      .budget {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+      .statement {
+        margin-top: 20px;
+      }
+      .statement h3 {
+        margin-bottom: 10px;
+      }
+      .statement .months {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .statement .months button {
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background-color: white;
+        color: black;
+      }
+      .statement .months button:hover {
+        background-color: #ddd;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+      }
+
+      .overlay.active {
+        display: block;
+      }
+      /* Media Queries para Tablet */
+      @media (max-width: 1024px) {
+        .container {
+          flex-direction: column;
+          height: auto;
+        }
+
+        .sidebar {
+          width: 250px;
+          left: -250px;
+          top: 0;
+          height: 100%;
+          position: fixed;
+        }
+
+        .sidebar.active {
+          left: 0;
+        }
+
+        .sidebar .user img {
+          width: 30%;
+        }
+
+        .sidebar .menu-item {
+          font-size: 16px;
+          padding: 5px;
+        }
+
+        .main-content {
+          margin-left: 0;
+        }
+
+        nav img {
+          width: 150px;
+        }
+
+        nav .menu-toggle {
+          display: block;
+        }
+
+        .content {
+          margin: 20px 10px;
+        }
+
+        .columns {
+          flex-direction: column;
+        }
+
+        .column {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+
+      /* Media Queries para Celular */
+      @media (max-width: 600px) {
+        .main-content {
+          margin-left: 0;
+        }
+
+        .container {
+          flex-direction: column;
+          height: auto;
+        }
+
+        .sidebar {
+          width: 250px;
+          left: -250px;
+          top: 0;
+          height: 100%;
+          position: fixed;
+        }
+
+        .sidebar.active {
+          left: 0;
+        }
+
+        .sidebar .user img {
+          width: 20%;
+        }
+
+        .sidebar .menu-item {
+          font-size: 14px;
+          padding: 5px;
+        }
+
+        nav {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+        nav .menu-toggle {
+          display: block;
+        }
+
+        nav img {
+          width: 120px;
+        }
+
+        .content {
+          margin: 20px 10px;
+        }
+
+        .filters {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .columns {
+          flex-direction: column;
+        }
+
+        .column {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+
+      /* Media Queries para monitores com altura pequena */
+      @media (max-height: 800px) {
+        .main-content {
+          margin-left: 0;
+        }
+
+        .container {
+          flex-direction: column;
+          height: auto;
+        }
+
+        .sidebar {
+          width: 250px;
+          left: -250px;
+          top: 0;
+          height: 100%;
+          position: fixed;
+        }
+
+        .sidebar.active {
+          left: 0;
+        }
+
+        .sidebar .user img {
+          width: 20%;
+        }
+
+        .sidebar .menu-item {
+          font-size: 14px;
+          padding: 5px;
+        }
+
+        nav {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+        nav .menu-toggle {
+          display: block;
+        }
+
+        nav img {
+          width: 120px;
+        }
+
+        .content {
+          margin: 20px 10px;
+        }
+
+        .filters {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .columns {
+          flex-direction: column;
+        }
+
+        .column {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar" id="sidebar">
+        <div class="user">
+          <img src="../Login/Icons/do-utilizador.png" alt="user" />
+          <h3>Nome da Instituição</h3>
+        </div>
+        <div onclick="projetos()" class="menu-item">
+          <span>Projetos</span>
+        </div>
+        <div onclick="cadastros()" class="menu-item">
+          <span>Cadastros</span>
+        </div>
+        <div onclick="financeiro()" class="menu-item selecionado">
+          <span>Financeiro</span>
+        </div>
+        <div onclick="relatorio()" class="menu-item">
+          <span>Relatório</span>
+        </div>
+      </div>
+      <div class="main-content">
+        <nav>
+          <button
+            class="menu-toggle"
+            id="menu-toggle"
+            onclick="toggleSidebar()"
+          >
+            ☰
+          </button>
+          <img
+            src="../Login/imagens/logo fortes 1.png"
+            alt="logo Fortes"
+            onclick="voltarFoto()"
+          />
+          <i class="fa-solid fa-arrow-up-from-bracket" onclick="voltari()"></i>
+        </nav>
+        <div class="content">
+          <div class="buttons">
+            <div class="search-container">
+              <label for="search">Orçamentos:</label>
+              <input type="text" id="search" placeholder="Search" />
+              <button>Doar</button>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Instituição e nome do Donatário</th>
+                <th>Valor Solicitado</th>
+                <th>CPF</th>
+                <th>Conta Bancária</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Giacomo Guilizzoni Founder & CEO</td>
+                <td>R$ 000,00</td>
+                <td>000 000 000-00</td>
+                <td>1234567-8</td>
+              </tr>
+              <tr>
+                <td>Marco Botton Tuttofare</td>
+                <td>R$ 000,00</td>
+                <td>000 000 000-00</td>
+                <td>1234567-8</td>
+              </tr>
+              <tr>
+                <td>Giacomo Guilizzoni Founder & CEO</td>
+                <td>R$ 000,00</td>
+                <td>000 000 000-00</td>
+                <td>1234567-8</td>
+              </tr>
+              <tr>
+                <td>Mariah Maclachlan Better Half</td>
+                <td>R$ 000,00</td>
+                <td>000 000 000-00</td>
+                <td>1234567-8</td>
+              </tr>
+              <tr>
+                <td>Valerie Liberty Head Chef</td>
+                <td>R$ 000,00</td>
+                <td>000 000 000-00</td>
+                <td>1234567-8</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="statement">
+            <h3>Extrato</h3>
+            <div class="months">
+              <button>Jan</button>
+              <button>Fev</button>
+              <button>Mar</button>
+              <button>Abr</button>
+              <button>Mai</button>
+              <button>Jun</button>
+              <button>Jul</button>
+              <button>Ago</button>
+              <button>Set</button>
+              <button>Out</button>
+              <button>Nov</button>
+              <button>Dez</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      }
+      function voltarFoto() {
+        window.location.href = "../index.html";
+      }
+      function voltari() {
+        window.location.href = "../index.html";
+      }
+      function projetos() {
+        window.location.href = "../PaginaAdmin/PrincipAdmin.html";
+      }
+      function cadastros() {
+        window.location.href = "../PaginaAdmin/cadastros.html";
+      }
+      function financeiro() {
+        window.location.href = "../PaginaAdmin/financeiro.html";
+      }
+
+      function relatorio() {
+        window.location.href = "../PaginaAdmin/relatorio.html";
+      }
+    </script>
+  </body>
+</html>

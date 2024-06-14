@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projetos</title>
+    <title>Cadastros</title>
     <link
       rel="shortcut icon"
       href="../Login/Icons/favicon.png"
@@ -228,6 +228,26 @@
         display: block;
       }
 
+      .table-container {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      table th,
+      table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+
+      table th {
+        background-color: #073763;
+        color: white;
+      }
 /* Media Queries para Tablet */
 @media (max-width: 1024px) {
       .container {
@@ -419,11 +439,11 @@
           <h3>Nome da Instituição</h3>
         </div>
 
-        <div onclick="projetos()" class="menu-item selecionado">
+        <div onclick="projetos()" class="menu-item ">
           <span>Projetos</span>
         </div>
 
-        <div onclick="cadastros()" class="menu-item">
+        <div onclick="cadastros()" class="menu-item selecionado">
           <span>Cadastros</span>
         </div>
 
@@ -453,273 +473,114 @@
         </nav>
 
         <div class="content">
-          <div class="filters">
-            <div class="filter">
-              <label for="data-abertura">Data abertura:</label>
-              <input
-                type="date"
-                id="data-abertura"
-                onchange="filtrarChamados()"
-              />
-            </div>
-            <div class="filter">
-              <label for="cidade">Cidade:</label>
-              <select id="cidade" onchange="filtrarChamados()">
-                <option value="">Todas</option>
-                <option value="Vila Velha">Vila Velha</option>
-                <option value="Cariacica">Cariacica</option>
-                <option value="Serra">Serra</option>
-                <option value="Vitória">Vitória</option>
-                <option value="Guarapari">Guarapari</option>
-                <option value="Viana">Viana</option>
+            <div class="filters">
+              <input type="text" placeholder="Search..." />
+              <select>
+                <option>Filtrar por:</option>
+                <!-- Add filter options here -->
               </select>
             </div>
-            <div class="filter">
-              <label for="finalidade">Finalidade:</label>
-              <select id="finalidade" onchange="filtrarChamados()">
-                <option value="">Todas</option>
-                <option value="ErradicacaoPobreza">
-                  Erradicação da Pobreza
-                </option>
-                <option value="FomeZero">
-                  Fome Zero e Agricultura Sustentável
-                </option>
-                <option value="Saude">Saúde e Bem-Estar</option>
-                <option value="Educacao">Educação de Qualidade</option>
-                <option value="Água">Água Potável e Saneamento</option>
-                <option value="Industria">
-                  Indústria, Inovação e Infraestrutura
-                </option>
-                <option value="Comunidades">
-                  Cidades e Comunidades Sustentáveis
-                </option>
-                <option value="Parcerias">
-                  Parcerias e Meios de Implementação
-                </option>
-              </select>
-            </div>
+            
+        <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Instituição</th>
+                  <th>Área de Impacto</th>
+                  <th>CNPJ</th>
+                  <th>Finalidade do Projeto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Instituição</td>
+                  <td>Área de Impacto</td>
+                  <td>CNPJ</td>
+                  <td>Finalidade do Projeto</td>
+                </tr>
+
+                <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>
+
+                  <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>
+
+                  <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>                <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>                <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>                <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>                <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>                <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>                <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>                <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>                <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>                <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>                <tr>
+                    <td>Instituição</td>
+                    <td>Área de Impacto</td>
+                    <td>CNPJ</td>
+                    <td>Finalidade do Projeto</td>
+                  </tr>
+              </tbody>
+            </table>
           </div>
-
-          <div class="columns">
-            <div class="column" id="estoque">
-              <h2>Estoque</h2>
-                <button onclick="irParaConfirmacao()">
-            </div>
-            <div class="column" id="em-tratativa">
-              <h2>Em Tratativa</h2>
-            </div>
-            <div class="column" id="concluidos">
-              <h2>Concluídos</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
-
+          <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
     <script>
-      const chamados = [
-        {
-          id: 1,
-          instituicao: "Instituição A",
-          responsavel: "Responsável A",
-          data: "2023-06-01",
-          regiao: "Vila Velha",
-          finalidade: "ErradicacaoPobreza",
-          preco: "R$ 1000",
-          analista: "Analista A",
-          status: "estoque",
-        },
-        {
-          id: 2,
-          instituicao: "Instituição B",
-          responsavel: "Responsável B",
-          data: "2023-06-02",
-          regiao: "Cariacica",
-          finalidade: "Saude",
-          preco: "R$ 2000",
-          analista: "Analista B",
-          status: "em-tratativa",
-        },
-        {
-          id: 3,
-          instituicao: "Instituição C",
-          responsavel: "Responsável C",
-          data: "2023-06-03",
-          regiao: "Serra",
-          finalidade: "Educacao",
-          preco: "R$ 1500",
-          analista: "Analista C",
-          status: "concluidos",
-        },
-        {
-          id: 4,
-          instituicao: "Instituição D",
-          responsavel: "Responsável D",
-          data: "2023-06-04",
-          regiao: "Vitória",
-          finalidade: "ErradicacaoPobreza",
-          preco: "R$ 1200",
-          analista: "Analista D",
-          status: "estoque",
-        },
-        {
-          id: 5,
-          instituicao: "Instituição E",
-          responsavel: "Responsável E",
-          data: "2023-06-05",
-          regiao: "Guarapari",
-          finalidade: "Saude",
-          preco: "R$ 2200",
-          analista: "Analista E",
-          status: "em-tratativa",
-        },
-        {
-          id: 6,
-          instituicao: "Instituição F",
-          responsavel: "Responsável F",
-          data: "2023-06-06",
-          regiao: "Viana",
-          finalidade: "Educacao",
-          preco: "R$ 1300",
-          analista: "Analista F",
-          status: "concluidos",
-        },
-        {
-          id: 7,
-          instituicao: "Instituição G",
-          responsavel: "Responsável G",
-          data: "2023-06-07",
-          regiao: "Vila Velha",
-          finalidade: "ErradicacaoPobreza",
-          preco: "R$ 1400",
-          analista: "Analista G",
-          status: "estoque",
-        },
-        {
-          id: 8,
-          instituicao: "Instituição H",
-          responsavel: "Responsável H",
-          data: "2023-06-08",
-          regiao: "Cariacica",
-          finalidade: "Saude",
-          preco: "R$ 2500",
-          analista: "Analista H",
-          status: "em-tratativa",
-        },
-        {
-          id: 9,
-          instituicao: "Instituição I",
-          responsavel: "Responsável I",
-          data: "2023-06-09",
-          regiao: "Serra",
-          finalidade: "Educacao",
-          preco: "R$ 1600",
-          analista: "Analista I",
-          status: "concluidos",
-        },
-        {
-          id: 10,
-          instituicao: "Instituição J",
-          responsavel: "Responsável J",
-          data: "2023-06-10",
-          regiao: "Vitória",
-          finalidade: "ErradicacaoPobreza",
-          preco: "R$ 1700",
-          analista: "Analista J",
-          status: "estoque",
-        },
-        {
-          id: 11,
-          instituicao: "Instituição K",
-          responsavel: "Responsável K",
-          data: "2023-06-11",
-          regiao: "Guarapari",
-          finalidade: "Saude",
-          preco: "R$ 2800",
-          analista: "Analista K",
-          status: "em-tratativa",
-        },
-        {
-          id: 12,
-          instituicao: "Instituição L",
-          responsavel: "Responsável L",
-          data: "2023-06-12",
-          regiao: "Viana",
-          finalidade: "Educacao",
-          preco: "R$ 1900",
-          analista: "Analista L",
-          status: "concluidos",
-        },
-      ];
-
-      function filtrarChamados() {
-        const dataAbertura = document.getElementById("data-abertura").value;
-        const cidade = document.getElementById("cidade").value;
-        const finalidade = document.getElementById("finalidade").value;
-
-        const filtrados = chamados.filter((chamado) => {
-          return (
-            (!dataAbertura || chamado.data === dataAbertura) &&
-            (!cidade || chamado.regiao === cidade) &&
-            (!finalidade || chamado.finalidade === finalidade)
-          );
-        });
-
-        renderizarChamados(filtrados);
-      }
-
-      function renderizarChamados(filtrados) {
-        const estoque = document.getElementById("estoque");
-        const emTratativa = document.getElementById("em-tratativa");
-        const concluidos = document.getElementById("concluidos");
-
-        estoque.innerHTML = "<h2>Estoque</h2>";
-        emTratativa.innerHTML = "<h2>Em Tratativa</h2>";
-        concluidos.innerHTML = "<h2>Concluídos</h2>";
-
-        filtrados.forEach((chamado) => {
-          const chamadoElement = document.createElement("div");
-          chamadoElement.className = "chamado";
-          chamadoElement.innerHTML = `
-          <h3> <img src="/Login/Icons/image 1.png" alt="Icon"> ${chamado.instituicao}</h3>
-          <hr>
-          <p>Responsável: ${chamado.responsavel}</p>
-          <p>Data: ${chamado.data}</p>
-          <p>Região: ${chamado.regiao}</p>
-          <p>Finalidade: ${chamado.finalidade}</p>
-          <p>Preço: ${chamado.preco}</p>
-          <p>Analista: ${chamado.analista}</p>
-            <div class="proximo">
-            <button onclick="irParaConfirmacao()">
-            <img src="/Login/Icons/Arrow 1.png" alt="Próximo" />
-            Próximo
-            </button>
-            </div>
-        `;
-
-          if (chamado.status === "estoque") {
-            estoque.appendChild(chamadoElement);
-          } else if (chamado.status === "em-tratativa") {
-            emTratativa.appendChild(chamadoElement);
-          } else if (chamado.status === "concluidos") {
-            concluidos.appendChild(chamadoElement);
-          }
-        });
-      }
 
       function toggleSidebar() {
-      const sidebar = document.querySelector(".sidebar");
-      const overlay = document.getElementById("overlay");
-      sidebar.classList.toggle("active");
-      overlay.classList.toggle("active");
-    }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        renderizarChamados(chamados);
-      });
-
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      }
       function voltarFoto() {
         window.location.href = "../index.html";
       }

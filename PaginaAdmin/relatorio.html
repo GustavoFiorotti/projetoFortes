@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orçamento</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      .sidebar {
+        background-color: #073763;
+        width: 15%;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: left 0.3s ease;
+        z-index: 1000;
+      }
+
+      .sidebar .user {
+        width: 100%;
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        background-color: #124588;
+        box-sizing: border-box;
+      }
+
+      .sidebar .user img {
+        width: 40%;
+      }
+
+      .sidebar .menu-item {
+        font-size: 18px;
+        width: 100%;
+        margin-top: 20px;
+        padding: 10px;
+        cursor: pointer;
+        box-sizing: border-box;
+        border: 3px solid black;
+        text-align: center;
+      }
+
+      .sidebar .menu-item:hover {
+        background-color: #124588;
+        font-weight: bold;
+      }
+
+      .sidebar .selecionado {
+        background-color: #124588;
+      }
+
+      .sidebar .selecionado:active,
+      .sidebar .menu-item:active {
+        font-weight: bold;
+        background-color: #95bcf2;
+        color: black;
+      }
+
+      .main-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: white;
+        position: relative;
+      }
+
+      nav img {
+        width: 200px;
+        cursor: pointer;
+      }
+
+      nav i {
+        rotate: 90deg;
+        transform: scale(130%);
+        cursor: pointer;
+      }
+
+      nav .menu-toggle {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        display: none;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .financial-info {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+      }
+
+      .financial-info input {
+        width: 200px;
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .charts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .chart-container {
+        position: relative;
+        width: 100%;
+        height: 300px;
+      }
+
+      .cadastros {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .cadastros input {
+        width: 300px;
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+      }
+
+      .overlay.active {
+        display: block;
+      }
+      @media (max-width: 1024px) {
+        .container {
+          flex-direction: column;
+          height: auto;
+        }
+
+        .sidebar {
+          width: 250px;
+          left: -250px;
+          top: 0;
+          height: 100%;
+          position: fixed;
+        }
+
+        .sidebar.active {
+          left: 0;
+        }
+
+        .sidebar .user img {
+          width: 30%;
+        }
+
+        .sidebar .menu-item {
+          font-size: 16px;
+          padding: 5px;
+        }
+
+        .main-content {
+          margin-left: 0;
+        }
+
+        nav img {
+          width: 150px;
+        }
+
+        nav .menu-toggle {
+          display: block;
+        }
+
+        .content {
+          margin: 20px 10px;
+        }
+
+        .columns {
+          flex-direction: column;
+        }
+
+        .column {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+
+        .financial-info input {
+          width: 100%;
+        }
+
+        .charts-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 10px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          margin-left: 0;
+        }
+        .container {
+          flex-direction: column;
+          height: auto;
+        }
+
+        .sidebar {
+          width: 250px;
+          left: -250px;
+          top: 0;
+          height: 100%;
+          position: fixed;
+        }
+
+        .sidebar.active {
+          left: 0;
+        }
+
+        .sidebar .user img {
+          width: 20%;
+        }
+
+        .sidebar .menu-item {
+          font-size: 14px;
+          padding: 5px;
+        }
+
+        nav {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+        nav .menu-toggle {
+          display: block;
+        }
+
+        nav img {
+          width: 120px;
+        }
+
+        .content {
+          margin: 20px 10px;
+        }
+
+        .filters {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .columns {
+          flex-direction: column;
+        }
+
+        .column {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+
+        .financial-info {
+          flex-direction: column;
+        }
+
+        .chart-container {
+          height: 250px;
+        }
+
+        .cadastros input {
+          width: 100%;
+        }
+      }
+
+      @media (max-height: 600px) {
+        .main-content {
+          margin-left: 0;
+        }
+
+        .container {
+          flex-direction: column;
+          height: auto;
+        }
+
+        .sidebar {
+          width: 250px;
+          left: -250px;
+          top: 0;
+          height: 100%;
+          position: fixed;
+        }
+
+        .sidebar.active {
+          left: 0;
+        }
+
+        .sidebar .user img {
+          width: 20%;
+        }
+
+        .sidebar .menu-item {
+          font-size: 14px;
+          padding: 5px;
+        }
+
+        nav {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+        nav .menu-toggle {
+          display: block;
+        }
+
+        nav img {
+          width: 120px;
+        }
+
+        .content {
+          margin: 20px 10px;
+        }
+
+        .filters {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .columns {
+          flex-direction: column;
+        }
+
+        .column {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="user">
+          <img src="../Login/Icons/do-utilizador.png" alt="user" />
+          <h3>Nome da Instituição</h3>
+        </div>
+        <div onclick="projetos()" class="menu-item">
+          <span>Projetos</span>
+        </div>
+        <div onclick="cadastros()" class="menu-item">
+          <span>Cadastros</span>
+        </div>
+        <div onclick="financeiro()" class="menu-item">
+          <span>Financeiro</span>
+        </div>
+        <div onclick="relatorio()" class="menu-item selecionado">
+          <span>Relatório</span>
+        </div>
+      </div>
+      <div class="main-content">
+        <nav>
+          <button
+            class="menu-toggle"
+            id="menu-toggle"
+            onclick="toggleSidebar()"
+          >
+            ☰
+          </button>
+          <img
+            src="../Login/imagens/logo fortes 1.png"
+            alt="logo Fortes"
+            onclick="voltarFoto()"
+          />
+          <i class="fa-solid fa-arrow-up-from-bracket" onclick="voltari()"></i>
+        </nav>
+        <div class="content">
+          <div class="financial-info">
+            <div>
+              <label for="budget">Orçamento:</label>
+              <input type="text" id="budget" value="R$ 0000,00" readonly />
+            </div>
+            <div>
+              <label for="monthly-expenses">Gastos Mensais:</label>
+              <input
+                type="text"
+                id="monthly-expenses"
+                value="R$ 0000,00"
+                readonly
+              />
+            </div>
+            <div>
+              <label for="expense-projection">Projeção de Gastos:</label>
+              <input
+                type="text"
+                id="expense-projection"
+                value="R$ 0000,00"
+                readonly
+              />
+            </div>
+          </div>
+          <div class="charts-grid">
+            <div class="chart-container">
+              <canvas id="budgetVsExpensesChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="pendingPaymentsChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="liberadosBloqueadosChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="estoqueTratativaConcluidosChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="saudeProjetosChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="educProjetosChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="incluidosFinalizadosChart"></canvas>
+            </div>
+          </div>
+          <div class="cadastros">
+            <label for="pending-registrations"
+              >Cadastros pendentes de análise:</label
+            >
+            <input type="text" id="pending-registrations" value="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.querySelector(".sidebar");
+        const overlay = document.getElementById("overlay");
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      }
+      function voltarFoto() {
+        window.location.href = "../index.html";
+      }
+      function voltari() {
+        window.location.href = "../index.html";
+      }
+      function projetos() {
+        window.location.href = "../PaginaAdmin/PrincipAdmin.html";
+      }
+      function cadastros() {
+        window.location.href = "../PaginaAdmin/cadastros.html";
+      }
+      function financeiro() {
+        window.location.href = "../PaginaAdmin/financeiro.html";
+      }
+      function relatorio() {
+        window.location.href = "../PaginaAdmin/relatorio.html";
+      }
+
+      // Example charts using Chart.js
+      const ctx1 = document
+        .getElementById("budgetVsExpensesChart")
+        .getContext("2d");
+      const budgetVsExpensesChart = new Chart(ctx1, {
+        type: "line",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+          datasets: [
+            {
+              label: "Orçamento",
+              data: [1200, 1500, 1400, 1700, 1600, 1800],
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 1,
+              fill: false,
+            },
+            {
+              label: "Gastos",
+              data: [1000, 1300, 1200, 1500, 1400, 1600],
+              borderColor: "rgba(255, 99, 132, 1)",
+              borderWidth: 1,
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      const ctx2 = document
+        .getElementById("pendingPaymentsChart")
+        .getContext("2d");
+      const pendingPaymentsChart = new Chart(ctx2, {
+        type: "bar",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+          datasets: [
+            {
+              label: "Pagamentos Pendentes",
+              data: [200, 300, 250, 350, 300, 400],
+              backgroundColor: "rgba(255, 206, 86, 0.2)",
+              borderColor: "rgba(255, 206, 86, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      const ctx3 = document
+        .getElementById("liberadosBloqueadosChart")
+        .getContext("2d");
+      const liberadosBloqueadosChart = new Chart(ctx3, {
+        type: "pie",
+        data: {
+          labels: ["Liberados", "Bloqueados"],
+          datasets: [
+            {
+              label: "Liberados/Bloqueados",
+              data: [60, 40],
+              backgroundColor: [
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 99, 132, 0.2)",
+              ],
+              borderColor: ["rgba(54, 162, 235, 1)", "rgba(255, 99, 132, 1)"],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+        },
+      });
+
+      const ctx4 = document
+        .getElementById("estoqueTratativaConcluidosChart")
+        .getContext("2d");
+      const estoqueTratativaConcluidosChart = new Chart(ctx4, {
+        type: "doughnut",
+        data: {
+          labels: ["Em Estoque", "Em Tratativa", "Concluídos"],
+          datasets: [
+            {
+              label: "Estoque/Em Tratativa/Concluídos",
+              data: [30, 50, 20],
+              backgroundColor: [
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+              ],
+              borderColor: [
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+        },
+      });
+
+      const ctx5 = document
+        .getElementById("saudeProjetosChart")
+        .getContext("2d");
+      const saudeProjetosChart = new Chart(ctx5, {
+        type: "bar",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+          datasets: [
+            {
+              label: "Projetos de Saúde",
+              data: [2, 3, 2, 5, 4, 6],
+              backgroundColor: "rgba(54, 162, 235, 0.2)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      const ctx6 = document
+        .getElementById("educProjetosChart")
+        .getContext("2d");
+      const educProjetosChart = new Chart(ctx6, {
+        type: "bar",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+          datasets: [
+            {
+              label: "Projetos de Educação",
+              data: [1, 2, 1, 3, 2, 4],
+              backgroundColor: "rgba(153, 102, 255, 0.2)",
+              borderColor: "rgba(153, 102, 255, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      const ctx7 = document
+        .getElementById("incluidosFinalizadosChart")
+        .getContext("2d");
+      const incluidosFinalizadosChart = new Chart(ctx7, {
+        type: "line",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+          datasets: [
+            {
+              label: "Incluídos",
+              data: [5, 10, 5, 12, 7, 15],
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 1,
+              fill: false,
+            },
+            {
+              label: "Finalizados",
+              data: [3, 8, 4, 10, 6, 12],
+              borderColor: "rgba(255, 99, 132, 1)",
+              borderWidth: 1,
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
