@@ -430,6 +430,7 @@
       }
     }
     </style>
+    <link rel="stylesheet" href="../PaginaEntidade/CSS/footer.css">
   </head>
   <body>
     <div class="container">
@@ -604,6 +605,23 @@
       function relatorio() {
         window.location.href = "../PaginaAdmin/relatorio.html"
       }
+    </script>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-left">© <span id="footer-year"></span> Gustavo Fiorotti</div>
+        <div class="footer-right">
+          <a href="../index.html">Início</a>
+          <a href="PrincipAdmin.html">Admin</a>
+          <a href="../PaginaEntidade/PrincipEntidade.html">Entidade</a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      (function(){
+        var el = document.getElementById('footer-year');
+        if(el) el.textContent = new Date().getFullYear();
+      })();
     </script>
   </body>
 </html>
