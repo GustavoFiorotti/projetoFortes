@@ -13,21 +13,23 @@
       @charset "UTF-8";
       @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
-      body {
+      body.with-footer {
         font-family: "Roboto", Helvetica, sans-serif;
         background-image: url("/projetoFortes/Login/imagens/ImagemFundoFortes.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
-        padding-top: 20px;
-        padding-bottom: 20px;
         margin: 0;
+      }
+
+      .content-wrapper {
+        flex: 1 0 auto;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        padding: 20px 0;
         box-sizing: border-box;
-        overflow: hidden;
+        width: 100%;
       }
 
       .voltar {
@@ -266,7 +268,7 @@
       }
 
       @media (max-height: 500px) {
-        body {
+        .content-wrapper {
           padding-top: 20px;
           padding-bottom: 20px;
         }
@@ -278,60 +280,62 @@
       }
     </style>
   </head>
-  <body>
-    <div class="main">
-      <div class="voltar">
-        <button onclick="Voltar()">
+  <body class="with-footer">
+    <div class="content-wrapper">
+      <div class="main">
+        <div class="voltar">
+          <button onclick="Voltar()">
+            <img
+              src="/projetoFortes/Login/Icons/Arrow 1.png"
+              alt="Voltar"
+            />Voltar
+          </button>
+        </div>
+
+        <div class="logo">
           <img
-            src="/projetoFortes/Login/Icons/Arrow 1.png"
-            alt="Voltar"
-          />Voltar
-        </button>
-      </div>
+            onclick="voltarFoto()"
+            src="/projetoFortes/Login/imagens/logo fortes 1.png"
+            alt="Logo"
+          />
+        </div>
+        <div class="select">
+          <button onclick="irParaProcessamento()" class="pagLado">
+            Processamento
+          </button>
+          <button onclick="irParaAprovacao()" class="pagLado">Aprovação</button>
+          <button onclick="irParaConfirmacao()" class="pagAtual">
+            Confirmação
+          </button>
+        </div>
 
-      <div class="logo">
-        <img
-          onclick="voltarFoto()"
-          src="/projetoFortes/Login/imagens/logo fortes 1.png"
-          alt="Logo"
-        />
-      </div>
-      <div class="select">
-        <button onclick="irParaProcessamento()" class="pagLado">
-          Processamento
-        </button>
-        <button onclick="irParaAprovacao()" class="pagLado">Aprovação</button>
-        <button onclick="irParaConfirmacao()" class="pagAtual">
-          Confirmação
-        </button>
-      </div>
+        <div class="form">
+          <label class="descricao" for="descricao"
+            >Seu chamado foi aprovado!!!</label
+          >
+          <p>
+            Agora, preencha os campos abaixo com as informações necessárias para
+            que possamos responder o seu chamado assim que possível
+          </p>
 
-      <div class="form">
-        <label class="descricao" for="descricao"
-          >Seu chamado foi aprovado!!!</label
-        >
-        <p>
-          Agora, preencha os campos abaixo com as informações necessárias para
-          que possamos responder o seu chamado assim que possível
-        </p>
+          <label for="numeroConta">Número da conta:</label>
+          <input required type="text" name="numeroConta" id="numeroConta" />
 
-        <label for="numeroConta">Número da conta:</label>
-        <input required type="text" name="numeroConta" id="numeroConta" />
+          <label for="agenciaBancaria">Agência Bancária:</label>
+          <input
+            required
+            type="text"
+            name="agenciaBancaria"
+            id="agenciaBancaria"
+          />
+        </div>
 
-        <label for="agenciaBancaria">Agência Bancária:</label>
-        <input
-          required
-          type="text"
-          name="agenciaBancaria"
-          id="agenciaBancaria"
-        />
-      </div>
-
-      <div class="proximo">
-        <button onclick="confirmar()">
-          <img src="/projetoFortes/Login/Icons/check.png" alt="Confirmar" />
-          Confirmar
-        </button>
+        <div class="proximo">
+          <button onclick="confirmar()">
+            <img src="/projetoFortes/Login/Icons/check.png" alt="Confirmar" />
+            Confirmar
+          </button>
+        </div>
       </div>
     </div>
     <script>
@@ -376,6 +380,23 @@
             "/projetoFortes/PaginaEntidade/PrincipEntidade.html";
         }
       }
+    </script>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-center">
+          © <span id="footer-year"></span> <span id="tr">—</span> Feito por
+          <a target="_blank" href="http://github.com/gustavofiorotti"
+            >Gustavo Fiorotti</a
+          >
+        </div>
+      </div>
+    </footer>
+    <link rel="stylesheet" href="../CSS/footer.css" />
+    <script>
+      (function () {
+        var el = document.getElementById("footer-year");
+        if (el) el.textContent = new Date().getFullYear();
+      })();
     </script>
   </body>
 </html>

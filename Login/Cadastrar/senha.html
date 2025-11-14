@@ -9,18 +9,20 @@
       @charset "UTF-8";
       @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
-      body {
+      body.with-footer {
         font-family: "Roboto", Helvetica, sans-serif;
         background-color: #f0f2f5;
-        padding-top: 50px;
-        padding-bottom: 20px;
         margin: 0;
+      }
+
+      .content-wrapper {
+        flex: 1 0 auto;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        padding: 50px 0 20px;
         box-sizing: border-box;
-        overflow: hidden;
+        width: 100%;
       }
 
       .voltar {
@@ -225,7 +227,7 @@
       }
 
       @media (max-height: 500px) {
-        body {
+        .content-wrapper {
           padding-top: 20px;
         }
         .main {
@@ -235,47 +237,55 @@
       }
     </style>
   </head>
-  <body>
-    <div class="main">
-      <div class="voltar">
-        <button onclick="Voltar()">
-          <img src="../Icons/Arrow 1.png" alt="Voltar" />Voltar
-        </button>
-      </div>
+  <body class="with-footer">
+    <div class="content-wrapper">
+      <div class="main">
+        <div class="voltar">
+          <button onclick="Voltar()">
+            <img src="../Icons/Arrow 1.png" alt="Voltar" />Voltar
+          </button>
+        </div>
 
-      <div class="logo">
-        <img
-          onclick="voltarFoto()"
-          src="../imagens/logo fortes 1.png"
-          alt="Logo"
-        />
-      </div>
-      <div class="select">
-        <button onclick="irParaDados()" class="pagLado">Dados Gerais</button>
-        <button onclick="irParaSenha()" class="pagAtual">Senha</button>
-        <button onclick="irParaFinalidade()" class="pagLado">Finalidade</button>
-      </div>
+        <div class="logo">
+          <img
+            onclick="voltarFoto()"
+            src="../imagens/logo fortes 1.png"
+            alt="Logo"
+          />
+        </div>
+        <div class="select">
+          <button onclick="irParaDados()" class="pagLado">Dados Gerais</button>
+          <button onclick="irParaSenha()" class="pagAtual">Senha</button>
+          <button onclick="irParaFinalidade()" class="pagLado">
+            Finalidade
+          </button>
+        </div>
 
-      <div class="form">
-        <label for="nomeResponsavel">Crie uma nova senha <span>*</span> </label>
-        <input required type="text" name="criarSenha" id="criarSenha" />
+        <div class="form">
+          <label for="nomeResponsavel"
+            >Crie uma nova senha <span>*</span>
+          </label>
+          <input required type="text" name="criarSenha" id="criarSenha" />
 
-        <label for="nomeResponsavel">Confirme sua senha <span>*</span> </label>
-        <input required type="text" name="confirmeSenha" id="confirmeSenha" />
+          <label for="nomeResponsavel"
+            >Confirme sua senha <span>*</span>
+          </label>
+          <input required type="text" name="confirmeSenha" id="confirmeSenha" />
 
-        <p><span>*</span> Ao menos uma letra maiuscula</p>
-        <p><span>*</span> A senha deve ter no mínimo 8 caracteres</p>
-        <p><span>*</span> A senha requer, no mínimo, um caractere especial</p>
-        <p>
-          <span>*</span> Evite palavras comuns ou sequências óbvias de
-          caracteres
-        </p>
-      </div>
+          <p><span>*</span> Ao menos uma letra maiuscula</p>
+          <p><span>*</span> A senha deve ter no mínimo 8 caracteres</p>
+          <p><span>*</span> A senha requer, no mínimo, um caractere especial</p>
+          <p>
+            <span>*</span> Evite palavras comuns ou sequências óbvias de
+            caracteres
+          </p>
+        </div>
 
-      <div class="proximo">
-        <button onclick="irParaFinalidade()">
-          <img src="../Icons/Arrow 1.png" alt="Próximo" /> Próximo
-        </button>
+        <div class="proximo">
+          <button onclick="irParaFinalidade()">
+            <img src="../Icons/Arrow 1.png" alt="Próximo" /> Próximo
+          </button>
+        </div>
       </div>
     </div>
 
@@ -311,6 +321,23 @@
           window.location.href = "../Cadastrar/finalidade.html";
         }
       }
+    </script>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-center">
+          © <span id="footer-year"></span> <span id="tr">—</span> Feito por
+          <a target="_blank" href="http://github.com/gustavofiorotti"
+            >Gustavo Fiorotti</a
+          >
+        </div>
+      </div>
+    </footer>
+    <link rel="stylesheet" href="../../PaginaEntidade/CSS/footer.css" />
+    <script>
+      (function () {
+        var el = document.getElementById("footer-year");
+        if (el) el.textContent = new Date().getFullYear();
+      })();
     </script>
   </body>
 </html>

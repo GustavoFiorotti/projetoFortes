@@ -26,7 +26,8 @@
 
       .container {
         display: flex;
-        height: 100vh;
+        flex: 1 0 auto;
+        min-height: 0;
       }
 
       .sidebar {
@@ -242,7 +243,7 @@
       }
     </style>
   </head>
-  <body>
+  <body class="with-footer">
     <div class="container">
       <div class="sidebar" id="sidebar">
         <div class="user">
@@ -320,6 +321,23 @@
         sidebar.classList.toggle("active");
         overlay.classList.toggle("active");
       }
+    </script>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-center">
+          © <span id="footer-year"></span> <span id="tr">—</span> Feito por
+          <a target="_blank" href="http://github.com/gustavofiorotti"
+            >Gustavo Fiorotti</a
+          >
+        </div>
+      </div>
+    </footer>
+    <link rel="stylesheet" href="./CSS/footer.css" />
+    <script>
+      (function () {
+        var el = document.getElementById("footer-year");
+        if (el) el.textContent = new Date().getFullYear();
+      })();
     </script>
   </body>
 </html>

@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Entre ou cadastre-se</title>
     <link rel="stylesheet" href="./Login/CSS/login.css" />
-    <link rel="shortcut icon" href="./Login/Icons/favicon.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="./Login/Icons/favicon.png"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <div class="container">
@@ -43,7 +47,9 @@
             id="senha"
           />
 
-          <span><a href="./Login/redefinirSenha.html">Esqueceu sua senha?</a></span>
+          <span
+            ><a href="./Login/redefinirSenha.html">Esqueceu sua senha?</a></span
+          >
         </div>
         <button onclick="acessarLogin()" type="button" class="botaoLogin">
           Iniciar Sessão
@@ -98,14 +104,32 @@
         button.classList.add("active");
       }
 
-      // Adicionando o evento de keyup ao formulário
-      document.getElementById("loginForm").addEventListener("keyup", function(event) {
-        // Número 13 é o código da tecla Enter
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          acessarLogin();
-        }
-      });
+      document
+        .getElementById("loginForm")
+        .addEventListener("keyup", function (event) {
+          // Número 13 é o código da tecla Enter
+          if (event.keyCode === 13) {
+            event.preventDefault();
+            acessarLogin();
+          }
+        });
+    </script>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-center">
+          © <span id="footer-year"></span> <span id="tr">—</span> Feito por
+          <a target="_blank" href="http://github.com/gustavofiorotti"
+            >Gustavo Fiorotti</a
+          >
+        </div>
+      </div>
+    </footer>
+    <link rel="stylesheet" href="./PaginaEntidade/CSS/footer.css" />
+    <script>
+      (function () {
+        var el = document.getElementById("footer-year");
+        if (el) el.textContent = new Date().getFullYear();
+      })();
     </script>
   </body>
 </html>

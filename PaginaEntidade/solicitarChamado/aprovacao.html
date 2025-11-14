@@ -13,21 +13,23 @@
       @charset "UTF-8";
       @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
-      body {
+      body.with-footer {
         font-family: "Roboto", Helvetica, sans-serif;
         background-image: url("/projetoFortes/Login/imagens/ImagemFundoFortes.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
-        padding-top: 20px;
-        padding-bottom: 20px;
         margin: 0;
+      }
+
+      .content-wrapper {
+        flex: 1 0 auto;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        padding: 20px 0;
         box-sizing: border-box;
-        overflow: hidden;
+        width: 100%;
       }
 
       .voltar {
@@ -229,7 +231,7 @@
       }
 
       @media (max-height: 500px) {
-        body {
+        .content-wrapper {
           padding-top: 20px;
           padding-bottom: 20px;
         }
@@ -241,45 +243,49 @@
       }
     </style>
   </head>
-  <body>
-    <div class="main">
-      <div class="voltar">
-        <button onclick="Voltar()">
+  <body class="with-footer">
+    <div class="content-wrapper">
+      <div class="main">
+        <div class="voltar">
+          <button onclick="Voltar()">
+            <img
+              src="/projetoFortes/Login/Icons/Arrow 1.png"
+              alt="Voltar"
+            />Voltar
+          </button>
+        </div>
+
+        <div class="logo">
           <img
-            src="/projetoFortes/Login/Icons/Arrow 1.png"
-            alt="Voltar"
-          />Voltar
-        </button>
-      </div>
+            onclick="voltarFoto()"
+            src="/projetoFortes/Login/imagens/logo fortes 1.png"
+            alt="Logo"
+          />
+        </div>
+        <div class="select">
+          <button onclick="irParaProcessamento()" class="pagLado">
+            Processamento
+          </button>
+          <button onclick="irParaAprovacao()" class="pagAtual">
+            Aprovação
+          </button>
+          <button onclick="irParaConfirmacao()" class="pagLado">
+            Confirmação
+          </button>
+        </div>
 
-      <div class="logo">
-        <img
-          onclick="voltarFoto()"
-          src="/projetoFortes/Login/imagens/logo fortes 1.png"
-          alt="Logo"
-        />
-      </div>
-      <div class="select">
-        <button onclick="irParaProcessamento()" class="pagLado">
-          Processamento
-        </button>
-        <button onclick="irParaAprovacao()" class="pagAtual">Aprovação</button>
-        <button onclick="irParaConfirmacao()" class="pagLado">
-          Confirmação
-        </button>
-      </div>
+        <div class="form">
+          <label for="descricao">Seu chamado está em análise</label>
+          <p>Verifique o Email cadastrado para possíveis atualizações</p>
+          <p>Sua posição na fila: 0001</p>
+        </div>
 
-      <div class="form">
-        <label for="descricao">Seu chamado está em análise</label>
-        <p>Verifique o Email cadastrado para possíveis atualizações</p>
-        <p>Sua posição na fila: 0001</p>
-      </div>
-
-      <div class="proximo">
-        <button onclick="irParaConfirmacao()">
-          <img src="/projetoFortes/Login/Icons/Arrow 1.png" alt="Próximo" />
-          Próximo
-        </button>
+        <div class="proximo">
+          <button onclick="irParaConfirmacao()">
+            <img src="/projetoFortes/Login/Icons/Arrow 1.png" alt="Próximo" />
+            Próximo
+          </button>
+        </div>
       </div>
     </div>
     <script>
@@ -306,6 +312,23 @@
         window.location.href =
           "/projetoFortes/PaginaEntidade/solicitarChamado/confirmacao.html";
       }
+    </script>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-center">
+          © <span id="footer-year"></span> <span id="tr">—</span> Feito por
+          <a target="_blank" href="http://github.com/gustavofiorotti"
+            >Gustavo Fiorotti</a
+          >
+        </div>
+      </div>
+    </footer>
+    <link rel="stylesheet" href="../CSS/footer.css" />
+    <script>
+      (function () {
+        var el = document.getElementById("footer-year");
+        if (el) el.textContent = new Date().getFullYear();
+      })();
     </script>
   </body>
 </html>

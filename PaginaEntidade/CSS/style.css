@@ -9,7 +9,8 @@ body {
 
 .container {
   display: flex;
-  height: 100vh;
+  flex: 1 0 auto;
+  min-height: 0;
 }
 
 .sidebar {
@@ -137,13 +138,12 @@ nav .menu-toggle {
 
 .tela2 {
   flex: 3;
-  margin-right: 10px;
-  height: 80%;
+  height: 70%;
 }
 
 .tela3 {
   flex: 1;
-  margin-right: 10px;
+  margin-left: 10px;
   margin-bottom: 50px;
 }
 

@@ -16,7 +16,7 @@
     />
     <link rel="stylesheet" href="CSS/footer.css" />
   </head>
-  <body>
+  <body class="with-footer">
     <div class="container">
       <div class="sidebar" id="sidebar">
         <div class="user">
@@ -105,16 +105,13 @@
         overlay.classList.toggle("active");
       }
     </script>
-
     <footer class="site-footer">
       <div class="footer-container">
-        <div class="footer-left">
-          © <span id="footer-year"></span> Gustavo Fiorotti
-        </div>
-        <div class="footer-right">
-          <a href="../index.html">Início</a>
-          <a href="../PaginaAdmin/PrincipAdmin.html">Admin</a>
-          <a href="PrincipEntidade.html">Entidade</a>
+        <div class="footer-center">
+          © <span id="footer-year"></span> <span id="tr">—</span> Feito por
+          <a target="_blank" href="http://github.com/gustavofiorotti"
+            >Gustavo Fiorotti</a
+          >
         </div>
       </div>
     </footer>

@@ -9,17 +9,20 @@
       @charset "UTF-8";
       @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
-      body {
+      body.with-footer {
         font-family: "Roboto", Helvetica, sans-serif;
         background-color: #f0f2f5;
-        padding-top: 50px;
         margin: 0;
+      }
+
+      .content-wrapper {
+        flex: 1 0 auto;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        padding: 50px 0;
         box-sizing: border-box;
-        overflow: hidden;
+        width: 100%;
       }
 
       .voltar {
@@ -272,7 +275,7 @@
       }
 
       @media (max-height: 500px) {
-        body {
+        .content-wrapper {
           padding-top: 20px;
         }
         .main {
@@ -282,77 +285,80 @@
       }
     </style>
   </head>
-  <body>
-    <div class="main">
-      <div class="voltar">
-        <button onclick="Voltar()">
-          <img src="../Icons/Arrow 1.png" alt="Voltar" />Voltar
-        </button>
-      </div>
-
-      <div class="logo">
-        <img
-          onclick="voltarFoto()"
-          src="../imagens/logo fortes 1.png"
-          alt="Logo"
-        />
-      </div>
-      <div class="select">
-        <button onclick="irParaDados()" class="pagLado">Dados Gerais</button>
-        <button onclick="irParaSenha()" class="pagLado">Senha</button>
-        <button onclick="irParaFinalidade()" class="pagAtual">
-          Finalidade
-        </button>
-      </div>
-
-      <div class="form">
-        <label for="nomeResponsavel"
-          >Qual o intuito da sua instituição? <span>*</span>
-        </label>
-        <select required name="finalidade" id="finalidade">
-          <optgroup label="Selecione seu intuito">
-            <option value="ErradicacaoPobreza">Erradicação da Pobreza</option>
-            <option value="FomeZero">
-              Fome Zero e Agricultura Sustentável
-            </option>
-            <option value="Saude">Saúde e Bem-Estar</option>
-            <option value="Educacao">Educação de Qualidade</option>
-            <option value="Água">Água Potável e Saneamento</option>
-            <option value="Industria">
-              Indústria, Inovação e Infraestrutura
-            </option>
-            <option value="Comunidades">
-              Cidades e Comunidades Sustentáveis
-            </option>
-            <option value="Parcerias">
-              Parcerias e Meios de Implementação
-            </option>
-          </optgroup>
-        </select>
-
-        <form
-          id="upload-form"
-          enctype="multipart/form-data"
-          onsubmit="return Concluido()"
-        >
-          <label for="">Fotos do Projeto/Instituição <span>*</span></label>
-          <label for="file-upload" class="custom-file-upload">
-            <img src="../Icons/download.png" alt="Anexar fotos" /> Anexar Fotos
-          </label>
-          <input
-            id="file-upload"
-            type="file"
-            name="fotos"
-            accept="image/*"
-            multiple
-          />
-        </form>
-        <p id="file-error"></p>
-
-        <div class="proximo">
-          <button onclick="Concluido(event)">
-            <img src="../Icons/check.png" alt="Concluir" /> Concluir
+  <body class="with-footer">
+    <div class="content-wrapper">
+      <div class="main">
+        <div class="voltar">
+          <button onclick="Voltar()">
+            <img src="../Icons/Arrow 1.png" alt="Voltar" />Voltar
           </button>
+        </div>
+
+        <div class="logo">
+          <img
+            onclick="voltarFoto()"
+            src="../imagens/logo fortes 1.png"
+            alt="Logo"
+          />
+        </div>
+        <div class="select">
+          <button onclick="irParaDados()" class="pagLado">Dados Gerais</button>
+          <button onclick="irParaSenha()" class="pagLado">Senha</button>
+          <button onclick="irParaFinalidade()" class="pagAtual">
+            Finalidade
+          </button>
+        </div>
+
+        <div class="form">
+          <label for="nomeResponsavel"
+            >Qual o intuito da sua instituição? <span>*</span>
+          </label>
+          <select required name="finalidade" id="finalidade">
+            <optgroup label="Selecione seu intuito">
+              <option value="ErradicacaoPobreza">Erradicação da Pobreza</option>
+              <option value="FomeZero">
+                Fome Zero e Agricultura Sustentável
+              </option>
+              <option value="Saude">Saúde e Bem-Estar</option>
+              <option value="Educacao">Educação de Qualidade</option>
+              <option value="Água">Água Potável e Saneamento</option>
+              <option value="Industria">
+                Indústria, Inovação e Infraestrutura
+              </option>
+              <option value="Comunidades">
+                Cidades e Comunidades Sustentáveis
+              </option>
+              <option value="Parcerias">
+                Parcerias e Meios de Implementação
+              </option>
+            </optgroup>
+          </select>
+
+          <form
+            id="upload-form"
+            enctype="multipart/form-data"
+            onsubmit="return Concluido()"
+          >
+            <label for="">Fotos do Projeto/Instituição <span>*</span></label>
+            <label for="file-upload" class="custom-file-upload">
+              <img src="../Icons/download.png" alt="Anexar fotos" /> Anexar
+              Fotos
+            </label>
+            <input
+              id="file-upload"
+              type="file"
+              name="fotos"
+              accept="image/*"
+              multiple
+            />
+          </form>
+          <p id="file-error"></p>
+
+          <div class="proximo">
+            <button onclick="Concluido(event)">
+              <img src="../Icons/check.png" alt="Concluir" /> Concluir
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -409,6 +415,23 @@
         window.location.href =
           "/projetoFortes/PaginaEntidade/PrincipEntidade.html";
       }
+    </script>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-center">
+          © <span id="footer-year"></span> <span id="tr">—</span> Feito por
+          <a target="_blank" href="http://github.com/gustavofiorotti"
+            >Gustavo Fiorotti</a
+          >
+        </div>
+      </div>
+    </footer>
+    <link rel="stylesheet" href="../../PaginaEntidade/CSS/footer.css" />
+    <script>
+      (function () {
+        var el = document.getElementById("footer-year");
+        if (el) el.textContent = new Date().getFullYear();
+      })();
     </script>
   </body>
 </html>

@@ -5,13 +5,18 @@ body {
   font-family: "Roboto", Helvetica, sans-serif;
   margin: 0;
   background-color: #f0f2f5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   overflow: hidden;
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
-  height: 100vh;
+  flex: 1;
+  min-height: 0;
+  max-height: calc(100vh - 80px);
 }
 
 .divEsquerda {
@@ -240,6 +245,10 @@ button.botaoAssociar.active {
 @media (max-height: 690px) {
   body {
     overflow-y: auto;
+    min-height: auto;
+  }
+  .container {
+    min-height: calc(100vh - 80px);
   }
   .divDireita {
     padding: 20px;
