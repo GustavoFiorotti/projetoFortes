@@ -251,77 +251,95 @@
   <body class="with-footer">
     <div class="content-wrapper">
       <div class="main">
-      <div class="voltar">
-        <button onclick="Voltar()">
-          <img src="../Icons/Arrow 1.png" alt="Voltar" />Voltar
-        </button>
-      </div>
+        <div class="voltar">
+          <button onclick="Voltar()">
+            <img src="../Icons/Arrow 1.png" alt="Voltar" />Voltar
+          </button>
+        </div>
 
-      <div class="logo">
-        <img
-          onclick="voltarFoto()"
-          src="../imagens/logo fortes 1.png"
-          alt="Logo"
-        />
-      </div>
-      <div class="select">
-        <button onclick="irParaDados()" class="pagAtual">Dados Gerais</button>
-        <button onclick="irParaSenha()" class="pagLado">Senha</button>
-        <button onclick="irParaFinalidade()" class="pagLado">Finalidade</button>
-      </div>
+        <div class="logo">
+          <img
+            onclick="voltarFoto()"
+            src="../imagens/logo fortes 1.png"
+            alt="Logo"
+          />
+        </div>
+        <div class="select">
+          <button onclick="irParaDados()" class="pagAtual">Dados Gerais</button>
+          <button onclick="irParaSenha()" class="pagLado">Senha</button>
+          <button onclick="irParaFinalidade()" class="pagLado">
+            Finalidade
+          </button>
+        </div>
 
-      <div class="form">
-        <label for="nomeResponsavel">Nome do Responsável <span>*</span> </label>
-        <input required type="text" name="NomeResponsavel" required id="nome" />
+        <div class="form">
+          <label for="nomeResponsavel"
+            >Nome do Responsável <span>*</span>
+          </label>
+          <input
+            required
+            type="text"
+            name="NomeResponsavel"
+            required
+            id="nome"
+          />
 
-        <label for="nomeResponsavel">Nome da Instituição <span>*</span> </label>
-        <input required type="text" name="nomeInstituicao" required id="nome" />
+          <label for="nomeResponsavel"
+            >Nome da Instituição <span>*</span>
+          </label>
+          <input
+            required
+            type="text"
+            name="nomeInstituicao"
+            required
+            id="nome"
+          />
 
-        <label for="CNPJ">CNPJ <span>*</span></label>
-        <input
-          required
-          placeholder="0000.00.000000/0000-00"
-          type="text"
-          name="cnpj"
-          id="cnpj"
-        />
+          <label for="CNPJ">CNPJ <span>*</span></label>
+          <input
+            required
+            placeholder="0000.00.000000/0000-00"
+            type="text"
+            name="cnpj"
+            id="cnpj"
+          />
 
-        <label for="CEP">CEP <span>*</span> </label>
-        <input
-          required
-          placeholder="00000-000"
-          type="text"
-          name="cep"
-          id="cep"
-        />
+          <label for="CEP">CEP <span>*</span> </label>
+          <input
+            required
+            placeholder="00000-000"
+            type="text"
+            name="cep"
+            id="cep"
+          />
 
-        <a
-          href="https://buscacepinter.correios.com.br/app/endereco/index.php"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Não sabe seu CEP?</a
-        >
+          <a
+            href="https://buscacepinter.correios.com.br/app/endereco/index.php"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Não sabe seu CEP?</a
+          >
 
-        <label for="email">Email <span>*</span> </label>
-        <input
-          required
-          placeholder="usuario@gmail.com"
-          type="email"
-          name="email"
-          id="email"
-        />
+          <label for="email">Email <span>*</span> </label>
+          <input
+            required
+            placeholder="usuario@gmail.com"
+            type="email"
+            name="email"
+            id="email"
+          />
 
-        <label for="tel1">Telefone 1 <span>*</span> </label>
-        <input required type="tel" name="tel1" id="tel" />
-        <label for="tel1">Telefone 2 <span>*</span> </label>
-        <input required type="tel" name="tel2" id="tel" />
-      </div>
+          <label for="tel1">Telefone 1 <span>*</span> </label>
+          <input required type="tel" name="tel1" id="tel" />
+          <label for="tel1">Telefone 2 <span>*</span> </label>
+          <input required type="tel" name="tel2" id="tel" />
+        </div>
 
-      <div class="proximo">
-        <button onclick="irParaSenha()">
-          <img src="../Icons/Arrow 1.png" alt="Próximo" /> Próximo
-        </button>
-      </div>
+        <div class="proximo">
+          <button onclick="irParaSenha()">
+            <img src="../Icons/Arrow 1.png" alt="Próximo" /> Próximo
+          </button>
+        </div>
       </div>
     </div>
 
@@ -375,7 +393,8 @@
         <div class="footer-center">
           © <span id="footer-year"></span> <span id="tr">—</span> Feito por
           <a target="_blank" href="http://github.com/gustavofiorotti"
-          >Gustavo Fiorotti</a>
+            >Gustavo Fiorotti</a
+          >..
         </div>
       </div>
     </footer>
